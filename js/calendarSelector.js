@@ -1,4 +1,4 @@
-function myCalendar() {
+function myCalendarSelector() {
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth();
   const yearInput = document.querySelector("select[name='year']");
@@ -115,4 +115,4 @@ function myCalendar() {
   document.addEventListener("DOMContentLoaded", setDays);
 }
 
-myCalendar();
+myCalendarSelector();
