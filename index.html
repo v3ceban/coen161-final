@@ -4,11 +4,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="js/calendar.js" defer></script>
   <title>When to Meet++</title>
 </head>
 
 <body>
-  <h1>When to Meet++</h1>
+  <aside>
+    <header>
+      <h1><small>Better</small><br />When2Meet<span>logo</span></h1>
+      <button><span>account</span></button>
+    </header>
+    <h2>Welcome</h2>
+    <form>
+      <label>Email <input type="email" required /></label>
+      <label>Password <input type="password" required /></label>
+      <a href="#">Forgot password?</a>
+      <button type="submit">Login</button>
+      <a href="#">Create an account</a>
+    </form>
+    <h3>Description</h3>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+      quaerat veniam totam porro. Sunt, eaque? Corporis nesciunt repellendus
+      ducimus soluta?
+    </p>
+    <h3>Terms of service</h3>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
+      reiciendis quam repellendus natus odit nostrum explicabo voluptatum
+      velit ratione pariatur recusandae, reprehenderit beatae eius voluptates
+      eum animi? Soluta, magni doloribus.
+    </p>
+  </aside>
+  <main>
+    <h2>Event name</h2>
+    <form>
+      <label>Name event <input type="text" required /></label>
+      <button type="submit">Change name</button>
+    </form>
+    <h3>Chose dates</h3>
+    <form>
+      <select name="month">
+      </select>
+      <select name="year">
+      </select>
+      <label>1<input type="checkbox" name="day" value="1" /></label>
+      <label>2<input type="checkbox" name="day" value="2" /></label>
+      <input type="submit" value="submit" />
+    </form>
+  </main>
 </body>
 
 </html>

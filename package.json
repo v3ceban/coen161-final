@@ -1,0 +1,8 @@
+{
+  "name": "final-161",
+  "author": "Daryl Ho, Mia Lassiter, Vladimir Ceban",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  }
+}
