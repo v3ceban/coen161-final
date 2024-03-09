@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="js/calendarSelector.js" defer></script>
   <script src="js/timeSelector.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js" defer></script>
+  <script src="js/calendars.js" defer></script>
   <link rel="stylesheet" href="css/main.css" />
   <title>When to Meet++</title>
 </head>
@@ -79,6 +81,7 @@
       <p>Select a time slot in the calendar to change or delete it</p>
       <div>
         <!--Implement previews for days-->
+        <div id="calendarsContainer"></div>
       </div>
       <form method="POST">
         <label>
@@ -93,6 +96,53 @@
       </form>
     </section>
   </main>
+  <aside>
+    <select name="profile">
+      <option value="profileSettings">Profile settings</option>
+      <option value="myEvents">My events</option>
+    </select>
+    <section>
+      <h2>Change email</h2>
+      <form method="POST">
+        <label>
+          New email
+          <input type="email" name="newEmail" placeholder="new-email@example.com" required />
+        </label>
+        <label>
+          Password
+          <input type="password" name="currentPassword" placeholder="Your password" required />
+        </label>
+        <button type="submit">Update</button>
+        <button type="reset">Cancel</button>
+      </form>
+      <h2>Change password</h2>
+      <form method="POST">
+        <label>
+          Current password
+          <input type="password" name="currentPassword" placeholder="Current password" required />
+        </label>
+        <label>
+          New password
+          <input type="password" name="newPassword" placeholder="New password" required />
+        </label>
+        <label>
+          Confirm new password
+          <input type="password" name="newPassowrdConfirm" placeholder="Confirm new password" required />
+        </label>
+        <button type="submit">Update</button>
+        <button type="reset">Cancel</button>
+      </form>
+    </section>
+    <section>
+      <!---Display a card for each event user has-->
+      <article>
+        <h2>Event name</h2>
+        <p>Dates: date 1, date 2, date 3</p>
+        <button>View</button>
+        <button>Delete</button>
+      </article>
+    </section>
+  </aside>
 </body>
 
 </html>
