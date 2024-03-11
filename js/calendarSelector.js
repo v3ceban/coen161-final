@@ -35,12 +35,17 @@ function myCalendarSelector() {
     label.className = getDayName(firstDay, index);
 
     checkbox.addEventListener("click", () => {
-      console.log(checkbox.checked);
+      if (checkbox.checked) {
+        label.classList.add("active");
+      } else {
+        label.classList.remove("active");
+      }
     });
 
     return label;
   }
 
+  // Year object
   function addYear(year) {
     let newYear = {};
     newYear.year = year;
@@ -85,6 +90,7 @@ function myCalendarSelector() {
     return months[month];
   }
 
+  // Function to display the calendar
   function setDays() {
     const month = parseInt(monthInput.value);
     const year = parseInt(yearInput.value);
@@ -94,6 +100,7 @@ function myCalendarSelector() {
     const calendarContainer = document.getElementById("calendar");
     calendarContainer.innerHTML = "";
 
+    // Fill days of the week
     daysOfTheWeek.forEach((day) => {
       const p = document.createElement("p");
       p.textContent = day.substring(0, 1);
@@ -101,6 +108,7 @@ function myCalendarSelector() {
       calendarContainer.appendChild(p);
     });
 
+    // Get number of days to display for previous and next months
     const prevMonthDays = new Date(year, month, 0).getDate();
     const nextMonthDays = 42 - days - firstDay;
 
@@ -115,6 +123,7 @@ function myCalendarSelector() {
         -i,
       );
       label.style.gridRow = 2;
+      label.classList.add("notCurrent");
       calendarContainer.appendChild(label);
     }
 
@@ -131,11 +140,13 @@ function myCalendarSelector() {
       const nextMonth = month === 11 ? 1 : month + 2;
       const nextYear = month === 11 ? year + 1 : year;
       const label = createLabel(i, nextYear, nextMonth, i, firstDay, days + i);
+      label.classList.add("notCurrent");
       label.style.gridRow = Math.ceil((days + firstDay + i) / 7) + 1;
       calendarContainer.appendChild(label);
     }
   }
 
+  // Add years 5 years ago and 5 years ahead
   for (let i = 0; i < 5; i++) {
     if (i === 0) {
       addYear(currentYear);
@@ -146,6 +157,7 @@ function myCalendarSelector() {
   }
   calendar.sort((a, b) => a.year - b.year);
 
+  // Add options for each year
   for (let i = 0; i < calendar.length; i++) {
     const optionYear = document.createElement("option");
     optionYear.value = calendar[i].year;
@@ -154,6 +166,7 @@ function myCalendarSelector() {
     yearInput.value = currentYear;
   }
 
+  // Add options for each month
   for (let i = 0; i < 12; i++) {
     const optionMonth = document.createElement("option");
     optionMonth.value = i;
