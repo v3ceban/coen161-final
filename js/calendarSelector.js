@@ -14,8 +14,31 @@ function myCalendarSelector() {
     "Saturday",
   ];
 
+  function toTwoDigits(num) {
+    return String(num).padStart(2, "0");
+  }
+
   function getDayName(firstDay, day) {
     return daysOfTheWeek[(firstDay + (day - 1)) % 7];
+  }
+
+  function createLabel(day, year, month, value, firstDay, index) {
+    const label = document.createElement("label");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.name = "day";
+    checkbox.value = `${toTwoDigits(year)}-${toTwoDigits(month)}-${toTwoDigits(value)}`;
+
+    label.appendChild(document.createTextNode(day));
+    label.appendChild(checkbox);
+
+    label.className = getDayName(firstDay, index);
+
+    checkbox.addEventListener("click", () => {
+      console.log(checkbox.checked);
+    });
+
+    return label;
   }
 
   function addYear(year) {
@@ -70,16 +93,45 @@ function myCalendarSelector() {
     const firstDay = thisMonth.firstDay;
     const calendarContainer = document.getElementById("calendar");
     calendarContainer.innerHTML = "";
+
     daysOfTheWeek.forEach((day) => {
       const p = document.createElement("p");
       p.textContent = day.substring(0, 1);
       p.className = day;
       calendarContainer.appendChild(p);
     });
+
+    const prevMonthDays = new Date(year, month, 0).getDate();
+    const nextMonthDays = 42 - days - firstDay;
+
+    // Fill previous month days
+    for (let i = firstDay - 1; i >= 0; i--) {
+      const label = createLabel(
+        prevMonthDays - i,
+        year,
+        month,
+        prevMonthDays - i,
+        firstDay,
+        -i,
+      );
+      label.style.gridRow = 2;
+      calendarContainer.appendChild(label);
+    }
+
+    // Fill current month days
     for (let i = 1; i <= days; i++) {
-      const label = document.createElement("label");
-      label.innerHTML = `${i}<input type="checkbox" name="day" value="${i}" />`;
-      label.className = getDayName(firstDay, i);
+      const row = Math.ceil((i + firstDay) / 7) + 1;
+      const label = createLabel(i, year, month + 1, i, firstDay, i);
+      label.style.gridRow = row;
+      calendarContainer.appendChild(label);
+    }
+
+    // Fill next month days
+    for (let i = 1; i <= nextMonthDays; i++) {
+      const nextMonth = month === 11 ? 1 : month + 2;
+      const nextYear = month === 11 ? year + 1 : year;
+      const label = createLabel(i, nextYear, nextMonth, i, firstDay, days + i);
+      label.style.gridRow = Math.ceil((days + firstDay + i) / 7) + 1;
       calendarContainer.appendChild(label);
     }
   }

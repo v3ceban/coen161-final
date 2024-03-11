@@ -37,6 +37,7 @@
         Better When2Meet is a web app that helps you plan your next meeting.
         You can select the dates you want to met, set up your avaliability for
         these dates, and share it with other people so they can do the same.
+        Then you just pick the time that works for everyone!
       </p>
       <h3>Privacy policy</h3>
       <p>
@@ -50,13 +51,13 @@
     <main>
       <section>
         <h2>Event name</h2>
-        <form method="POST">
+        <form method="POST" id="eventNameForm">
           <label>Name event
             <input type="text" placeholder="My cool event" required /></label>
           <button type="submit">Change name</button>
         </form>
         <h3>Chose dates</h3>
-        <form method="POST">
+        <form method="POST" id="datesForm">
           <select name="month"></select>
           <select name="year"></select>
           <div id="calendar"></div>
