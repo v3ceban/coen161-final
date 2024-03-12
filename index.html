@@ -8,6 +8,7 @@
   <script src="js/timeSelector.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js" defer></script>
   <script src="js/renderCalendars.js" defer></script>
+  <script src="js/loginFrom.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -26,8 +27,10 @@
     <aside>
       <h2>Welcome</h2>
       <form method="POST" id="loginForm">
-        <label>Email <input type="email" placeholder="Email" required /></label>
-        <label>Password <input type="password" placeholder="Password" required /></label>
+        <label>Email
+          <input type="email" name="email" placeholder="Email" required /></label>
+        <label>Password
+          <input type="password" name="password" placeholder="Password" required /></label>
         <a href="#">Forgot password?</a>
         <button type="submit">Login</button>
         <a href="#">Create an account</a>
@@ -64,7 +67,7 @@
         </form>
         <h3>Chose time</h3>
         <p>Add time slots that fit your schedule</p>
-        <form method="POST">
+        <form method="POST" id="timeForm">
           <select name="date">
             <!--Only selected days should appear in the options here-->
             <option value="date1">Selected Date #1</option>
@@ -92,27 +95,27 @@
           <div class="calendarContainer"></div>
           <div class="calendarContainer"></div>
         </div>
-        <form method="POST">
+        <form method="POST" id="shareForm">
           <label>
             Looking good?
             <button>Copy share link</button>
           </label>
           <label>
             Invite people
-            <input type="email" name="invitation" />
+            <input type="email" name="invitation" placeholder="email@example.com" />
           </label>
           <button type="submit">Send</button>
         </form>
       </section>
     </main>
-    <aside>
+    <aside id="profile">
       <select name="profile">
         <option value="profileSettings">Profile settings</option>
         <option value="myEvents">My events</option>
       </select>
       <section>
         <h2>Change email</h2>
-        <form method="POST">
+        <form method="POST" id="changeEmailForm">
           <label>
             New email
             <input type="email" name="newEmail" placeholder="new-email@example.com" required />
@@ -125,7 +128,7 @@
           <button type="reset">Cancel</button>
         </form>
         <h2>Change password</h2>
-        <form method="POST">
+        <form method="POST" id="changePasswordForm">
           <label>
             Current password
             <input type="password" name="currentPassword" placeholder="Current password" required />
@@ -144,15 +147,31 @@
       </section>
       <section>
         <!---Render a card for each event user has-->
-        <article>
+        <div class="card">
           <h2>Event name</h2>
           <p>Dates: date 1, date 2, date 3</p>
           <button>View</button>
           <button>Delete</button>
-        </article>
+        </div>
+        <div class="card">
+          <h2>Event name</h2>
+          <p>Dates: date 1, date 2, date 3</p>
+          <button>View</button>
+          <button>Delete</button>
+        </div>
       </section>
     </aside>
   </div>
+  <!-- overlay example -->
+  <!-- <div id="overlay"> -->
+  <!--   <form method="POST" class="container"> -->
+  <!--     <h2>Create an account</h2> -->
+  <!--     <label>Email <input type="email" placeholder="Email" required /></label> -->
+  <!--     <label>Password <input type="password" placeholder="Password" required /></label> -->
+  <!--     <button type="submit">Create account</button> -->
+  <!--     <button type="reset">Cancel</button> -->
+  <!--   </form> -->
+  <!-- </div> -->
 </body>
 
 </html>

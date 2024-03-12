@@ -3,7 +3,9 @@
   grid-template-rows: -webkit-max-content 1em;
   grid-template-rows: max-content 1em;
   position: relative;
-  max-width: 200px;
+  width: 100%;
+  max-width: 310px;
+  margin: 38px auto 56px;
   background: linear-gradient(0deg, #4c4f69 4px, transparent 0);
 }
 
