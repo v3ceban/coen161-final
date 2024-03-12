@@ -1,0 +1,36 @@
+{
+  [
+    {
+      "id": "1",
+      "email": "example.com",
+      "password": "password1hash",
+      "events": [
+        {
+          "event_id": "1",
+          "name": "event1",
+          "dates": ["2024-01-01-17-00-20-00", "2024-01-01-08-30-15-00"],
+          "participants": ["1", "2"]
+        },
+        {
+          "event_id": "1",
+          "name": "event2",
+          "dates": ["2024-01-02-17-00-20-00", "2024-01-02-08-30-15-00"],
+          "participants": ["1"]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "email": "example2.com",
+      "password": "password2hash",
+      "events": [
+        {
+          "event_id": "1",
+          "name": "event1",
+          "dates": ["2024-01-01-19-00-20-00", "2024-01-01-10-00-13-30"],
+          "participants": ["1", "2"]
+        }
+      ]
+    }
+  ]
+}
