@@ -1,4 +1,4 @@
-function loginFrom() {
+function loginForm() {
   const form = document.getElementById("loginForm");
 
   // handle submission here
@@ -122,4 +122,4 @@ function loginFrom() {
   });
 }
 
-loginFrom();
+loginForm();
