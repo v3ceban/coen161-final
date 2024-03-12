@@ -26,7 +26,7 @@
     </header>
     <aside>
       <h2>Welcome</h2>
-      <form method="POST" id="loginForm">
+      <form method="POST" action="login.php" id="loginForm">
         <label>Email
           <input type="email" name="email" placeholder="Email" required /></label>
         <label>Password
@@ -54,7 +54,7 @@
     <main>
       <section>
         <h2>Event name</h2>
-        <form method="POST" id="eventNameForm">
+        <form method="POST" action="event.php" id="eventNameForm">
           <label>Name event
             <input type="text" placeholder="My cool event" required /></label>
           <button type="submit">Change name</button>
@@ -67,7 +67,7 @@
         </form>
         <h3>Chose time</h3>
         <p>Add time slots that fit your schedule</p>
-        <form method="POST" id="timeForm">
+        <form method="POST" action="time.php" id="timeForm">
           <select name="date">
             <!--Only selected days should appear in the options here-->
             <option value="date1">Selected Date #1</option>
@@ -95,7 +95,7 @@
           <div class="calendarContainer"></div>
           <div class="calendarContainer"></div>
         </div>
-        <form method="POST" id="shareForm">
+        <form method="POST" action="share.php" id="shareForm">
           <label>
             Looking good?
             <button>Copy share link</button>
@@ -115,7 +115,7 @@
       </select>
       <section>
         <h2>Change email</h2>
-        <form method="POST" id="changeEmailForm">
+        <form method="POST" action="changeEmail.php" id="changeEmailForm">
           <label>
             New email
             <input type="email" name="newEmail" placeholder="new-email@example.com" required />
@@ -128,7 +128,7 @@
           <button type="reset">Cancel</button>
         </form>
         <h2>Change password</h2>
-        <form method="POST" id="changePasswordForm">
+        <form method="POST" action="changePassword.php" id="changePasswordForm">
           <label>
             Current password
             <input type="password" name="currentPassword" placeholder="Current password" required />
