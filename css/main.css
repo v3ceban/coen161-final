@@ -240,7 +240,6 @@ aside p {
 }
 
 /* Main section (app) */
-
 main h2 {
   font-size: 32px;
   margin: 64.5px 0 30px;
@@ -424,6 +423,7 @@ main h3 {
   margin-bottom: 30px;
 }
 
+/* Preview section */
 main section:nth-of-type(2)>p {
   margin-bottom: 30px;
 }
@@ -443,6 +443,7 @@ main .calendarContainer {
   margin: 24px 0;
 }
 
+/* Profile section */
 #profile select {
   max-width: 310px;
   width: 100%;
@@ -529,6 +530,7 @@ main .calendarContainer {
       rgba(147, 10, 10, 0.48));
 }
 
+/* Overlay styles */
 #overlay {
   height: 100dvh;
   width: 100vw;
