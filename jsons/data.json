@@ -1,36 +1,70 @@
-{
-  [
-    {
+[
+  {
       "id": "1",
-      "email": "example.com",
-      "password": "password1hash",
+      "email": "vceban@scu.edu",
+      "password": "hello",
       "events": [
-        {
-          "event_id": "1",
-          "name": "event1",
-          "dates": ["2024-01-01-17-00-20-00", "2024-01-01-08-30-15-00"],
+        {"event_id": "1",
+          "name": "COEN 146 Study Group",
+          "dates": ["2024-03-017-17-00-20-00", "2024-03-018-08-30-15-00"],
           "participants": ["1", "2"]
         },
-        {
-          "event_id": "1",
-          "name": "event2",
-          "dates": ["2024-01-02-17-00-20-00", "2024-01-02-08-30-15-00"],
-          "participants": ["1"]
+        {"event_id": "2",
+          "name": "Lunch with Friends",
+          "dates": ["2024-03-20-11-00-14-00", "2024-03-21-20-30-14-00"],
+          "participants": ["1,2,3,4"]
         }
       ]
     },
     {
       "id": "2",
-      "email": "example2.com",
-      "password": "password2hash",
+      "email": "dho@scu.edu",
+      "password": "Project",
       "events": [
-        {
-          "event_id": "1",
-          "name": "event1",
-          "dates": ["2024-01-01-19-00-20-00", "2024-01-01-10-00-13-30"],
+        {"event_id": "1",
+          "name": "COEN 146 Study Group",
+          "dates": ["2024-03-017-17-00-22-00", "2024-03-018-08-00-11-00"],
           "participants": ["1", "2"]
-        }
+        },
+        {"event_id": "2",
+        "name": "Lunch with Friends",
+        "dates": ["2024-03-20-11-30-13-30", "2024-03-21-20-30-14-00"],
+        "participants": ["1,2,3,4"]
+      }
+      ]
+    },
+    {
+      "id": "3",
+      "email": "mlassiter@scu.edu",
+      "password": "coding",
+      "events": [
+        {"event_id": "3",
+          "name": "Brunch",
+          "dates": ["2024-03-20-8-00-12-00", "2024-03-22-08-00-11-00"],
+          "participants": ["3","4"]
+        },
+        {"event_id": "2",
+        "name": "Lunch with Friends",
+        "dates": ["2024-03-19-11-30-13-30", "2024-03-21-11-30-1-30"],
+        "participants": ["1,2,3,4"]
+      }
+      ]
+    },
+    {
+      "id": "4",
+      "email": "jdoe@scu.edu",
+      "password": "Monday",
+      "events": [
+        {"event_id": "3",
+          "name": "Brunch",
+          "dates": ["2024-03-020-9-00-22-00"],
+          "participants": ["3", "4"]
+        },
+        {"event_id": "2",
+        "name": "Lunch with Friends",
+        "dates": ["2024-03-20-11-30-13-30", "2024-03-21-20-30-14-00"],
+        "participants": ["1,2,3,4"]
+      }
       ]
     }
   ]
-}
