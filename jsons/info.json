@@ -1,0 +1,24 @@
+[
+    {"User": [
+        {
+            "email": "",
+            "password": "",
+            "myEvents": []
+        }
+    ]},
+    { "Event": [
+        {
+            "name": "",
+            "date1": {
+                "date":"",
+                "start": "",
+                "end": ""
+            },
+            "date2": {
+                "date": "",
+                "start": "",
+                "end": ""                
+            }
+        }
+    ]}
+]
