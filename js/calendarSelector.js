@@ -13,6 +13,17 @@ function myCalendarSelector() {
     "Friday",
     "Saturday",
   ];
+  let isDragging = false;
+  let lastCheckedCheckbox = null;
+
+  window.addEventListener("mousedown", () => {
+    isDragging = true;
+  });
+
+  window.addEventListener("mouseup", () => {
+    isDragging = false;
+    lastCheckedCheckbox = null;
+  });
 
   function toTwoDigits(num) {
     return String(num).padStart(2, "0");
@@ -34,16 +45,24 @@ function myCalendarSelector() {
 
     label.className = getDayName(firstDay, index);
 
-    checkbox.addEventListener("click", () => {
-      if (checkbox.checked) {
-        label.classList.add("active");
-      } else {
-        label.classList.remove("active");
-      }
+    label.addEventListener("mousedown", () => {
+      checkbox.checked = !checkbox.checked;
+      label.classList.toggle("active", checkbox.checked);
+      lastCheckedCheckbox = checkbox;
     });
 
+    label.addEventListener("mouseover", (event) => {
+        if (isDragging) {
+            const currentCheckbox = checkbox;
+            if (currentCheckbox !== lastCheckedCheckbox) {
+                currentCheckbox.checked = lastCheckedCheckbox.checked;
+                label.classList.toggle("active", currentCheckbox.checked);
+                lastCheckedCheckbox = currentCheckbox;
+            }
+        }
+    });
     return label;
-  }
+}
 
   // Year object
   function addYear(year) {
@@ -103,7 +122,7 @@ function myCalendarSelector() {
     // Fill days of the week
     daysOfTheWeek.forEach((day) => {
       const p = document.createElement("p");
-      p.textContent = day.substring(0, 1);
+      p.textContent = day.substring(0, 3);
       p.className = day;
       calendarContainer.appendChild(p);
     });

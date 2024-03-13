@@ -7,6 +7,7 @@ function loginForm() {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
     console.log(data.email, data.password);
+    // Send to PHP
   });
 
   form.querySelectorAll("a").forEach((link, index) => {
