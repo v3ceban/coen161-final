@@ -1,6 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 function renderCalendars(dates) {
-  console.log(dates);
-  // const calendarContainers = document.querySelectorAll(".calendarContainer");
+  dates = dates.sort();
+  // console.log(dates);
   // this dates should be retrieved from the database
   const mainContainer = document.getElementById("main-container");
   mainContainer.innerHTML = "";

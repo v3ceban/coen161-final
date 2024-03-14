@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 function myCalendarSelector() {
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth();
@@ -60,6 +61,7 @@ function myCalendarSelector() {
       } else if (!checkbox.checked && dates.includes(value)) {
         dates = dates.filter((date) => date !== value);
       }
+      updateSelector(dates);
       renderCalendars(dates);
     });
 
@@ -74,6 +76,7 @@ function myCalendarSelector() {
         } else if (!checkbox.checked && dates.includes(value)) {
           dates = dates.filter((date) => date !== value);
         }
+        updateSelector(dates);
         renderCalendars(dates);
       }
     });
