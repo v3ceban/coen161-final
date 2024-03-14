@@ -13,6 +13,7 @@ function myCalendarSelector() {
     "Friday",
     "Saturday",
   ];
+  let dates = [];
   let isDragging = false;
   let lastCheckedCheckbox = null;
 
@@ -38,7 +39,7 @@ function myCalendarSelector() {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.name = "day";
-    checkbox.value = `${toTwoDigits(year)}-${toTwoDigits(month)}-${toTwoDigits(value)}`;
+    checkbox.value = `${toTwoDigits(year)} - ${toTwoDigits(month)} - ${toTwoDigits(value)}`;
 
     label.appendChild(document.createTextNode(day));
     label.appendChild(checkbox);
@@ -49,6 +50,16 @@ function myCalendarSelector() {
       checkbox.checked = !checkbox.checked;
       label.classList.toggle("active", checkbox.checked);
       lastCheckedCheckbox = checkbox;
+      if (checkbox.checked) {
+        dates.push(`${toTwoDigits(year)}-${toTwoDigits(month)}-${toTwoDigits(value)}`);
+        updateSelector(dates);
+        renderCalendars(dates);
+      }
+      else {
+        dates = dates.filter((date) => date !== `${toTwoDigits(year)}-${toTwoDigits(month)}-${toTwoDigits(value)}`);
+        updateSelector(dates);
+        renderCalendars(dates);
+      }
     });
 
     label.addEventListener("mouseover", (event) => {
@@ -58,6 +69,16 @@ function myCalendarSelector() {
                 currentCheckbox.checked = lastCheckedCheckbox.checked;
                 label.classList.toggle("active", currentCheckbox.checked);
                 lastCheckedCheckbox = currentCheckbox;
+                if (checkbox.checked) {
+                  dates.push(`${toTwoDigits(year)}-${toTwoDigits(month)}-${toTwoDigits(value)}`);
+                  updateSelector(dates);
+                  renderCalendars(dates);
+                }
+                else {
+                  dates = dates.filter((date) => date !== `${toTwoDigits(year)}-${toTwoDigits(month)}-${toTwoDigits(value)}`);
+                  updateSelector(dates);
+                  renderCalendars(dates);
+                }
             }
         }
     });
@@ -170,7 +191,6 @@ function myCalendarSelector() {
     if (i === 0) {
       addYear(currentYear);
     } else {
-      addYear(currentYear - i);
       addYear(currentYear + i);
     }
   }

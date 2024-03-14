@@ -1,3 +1,5 @@
+<?php
+
 //receive variables from JS 
 
 $file = 'changePassword.json';
@@ -19,5 +21,7 @@ if ($email != NULL && $pword != NULL) {
         'email'=>$email, 'password'=>$pword
     );
     $str = json_encode($data);
-    file_put_contents($file, $str)
+    file_put_contents($file, $str);
 }
+
+?>

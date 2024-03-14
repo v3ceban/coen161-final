@@ -1,9 +1,19 @@
-function renderCalendars() {
-  const calendarContainers = document.querySelectorAll(".calendarContainer");
+function renderCalendars(dates) {
+  console.log(dates);
+  // const calendarContainers = document.querySelectorAll(".calendarContainer");
   // this dates should be retrieved from the database
-  const dates = ["2024-01-31", "2024-02-01"];
+  const mainContainer = document.getElementById("main-container");
+  mainContainer.innerHTML = "";
+  let containers = [];
 
-  calendarContainers.forEach((container, index) => {
+  for (let i = 0; i < dates.length; i++) {
+    const calendarContainer = document.createElement("div");
+    calendarContainer.classList.add("calendarContainer");
+    mainContainer.appendChild(calendarContainer);
+    containers.push(calendarContainer);
+  }
+
+  containers.forEach((container, index) => {
     // eslint-disable-next-line no-undef
     let calendar = new FullCalendar.Calendar(container, {
       initialDate: dates[index],
@@ -16,5 +26,3 @@ function renderCalendars() {
     calendar.render();
   });
 }
-
-renderCalendars();

@@ -1,10 +1,12 @@
+<?php
+
 //receive variables from JS 
 
 $file = 'share.json';
 
-if (isset($_GET["emails"])){
+if (isset($_GET["emails"])) {
     $emails = $_GET["email"];
-    $emailsArr = explode("," $emails)
+    $emailsArr = explode("," $emails);
 } else {
     $emails = null;
 }
@@ -19,3 +21,4 @@ foreach ($emails['user'] as $key => $addr) {
 
 file_put_contents($file, json_encode($invitees), JSON_FORCE_OBJECT);
 
+?>

@@ -18,6 +18,8 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js" defer></script>
   <script src="js/renderCalendars.js" defer></script>
   <script src="js/loginForm.js" defer></script>
+  <script src="js/dateSelector.js" defer></script>
+  <script src="js/nameEvent.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -62,11 +64,11 @@
     </aside>
     <main>
       <section>
-        <h2>Event name</h2>
-        <form method="POST" action="event.php" id="eventNameForm">
+        <h2 id="event-name">Event name</h2>
+        <form method="POST" id="eventNameForm">
           <label>Name event
-            <input type="text" placeholder="My cool event" required /></label>
-          <button type="submit">Change name</button>
+            <input id="event-name-input"type="text" placeholder="My cool event" required /></label>
+          <button type="submit" id="event-name-button">Change name</button>
         </form>
         <h3>Chose dates</h3>
         <form method="POST" id="datesForm">
@@ -79,8 +81,6 @@
         <form method="POST" action="time.php" id="timeForm">
           <select name="date" id="dateSelector">
             <!--Only selected days should appear in the options here-->
-            <option value="date1">Selected Date #1</option>
-            <option value="date2">Selected Date #2</option>
           </select>
           <!--Values in input[type=time] should change with input[type=range] and vice versa-->
           <input type="time" name="start" value="07:00" />
@@ -96,13 +96,11 @@
         <button>Preview</button>
       </section>
       <section>
-        <h2>Event name</h2>
+        <h2 id="event-name-2">Event name</h2>
         <h3>Preview</h3>
         <p>Select a time slot in the calendar to change or delete it</p>
-        <div>
+        <div id="main-container">
           <!--Render a calendar for each day selected-->
-          <div class="calendarContainer"></div>
-          <div class="calendarContainer"></div>
         </div>
         <form method="POST" action="share.php" id="shareForm">
           <label>

@@ -1,3 +1,5 @@
+<?php
+
 $file = 'event.json';
 
 if (isset($_GET["event"])){
@@ -9,5 +11,7 @@ if (isset($_GET["event"])){
 if ($eventName != NULL) {
     $data = 'name'=>$eventName;
     $str = json_encode($data);
-    file_put_contents($file, $str)
+    file_put_contents($file, $str);
 }
+
+?>
