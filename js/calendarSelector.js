@@ -15,7 +15,6 @@ function myCalendarSelector() {
   ];
   let dates = [];
   let isDragging = false;
-  let lastCheckedCheckbox = null;
 
   window.addEventListener("mousedown", () => {
     isDragging = true;
@@ -23,7 +22,6 @@ function myCalendarSelector() {
 
   window.addEventListener("mouseup", () => {
     isDragging = false;
-    lastCheckedCheckbox = null;
   });
 
   function toTwoDigits(num) {
@@ -50,9 +48,7 @@ function myCalendarSelector() {
     label.className = getDayName(firstDay, index);
 
     label.addEventListener("mousedown", () => {
-      isDragging = true;
       checkbox.checked = !checkbox.checked;
-      lastCheckedCheckbox = checkbox;
       const value = checkbox.value.replace(/\s/g, "");
       if (checkbox.checked) {
         label.classList.add("active");
@@ -71,19 +67,17 @@ function myCalendarSelector() {
       if (isDragging) {
         const currentCheckbox = checkbox;
         const value = checkbox.value.replace(/\s/g, "");
-        if (currentCheckbox !== lastCheckedCheckbox) {
-          currentCheckbox.checked = lastCheckedCheckbox.checked;
-          label.classList.toggle("active");
-          lastCheckedCheckbox = currentCheckbox;
-          if (checkbox.checked && !dates.includes(value)) {
-            dates.push(value);
-          } else if (!checkbox.checked && dates.includes(value)) {
-            dates = dates.filter((date) => date !== value);
-          }
-          renderCalendars(dates);
+        label.classList.toggle("active");
+        currentCheckbox.checked = !currentCheckbox.checked;
+        if (checkbox.checked && !dates.includes(value)) {
+          dates.push(value);
+        } else if (!checkbox.checked && dates.includes(value)) {
+          dates = dates.filter((date) => date !== value);
         }
+        renderCalendars(dates);
       }
     });
+
     return label;
   }
 
