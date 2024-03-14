@@ -1,3 +1,5 @@
+<?php
+
 //receive variables from JS 
 
 $file = 'changeEmail.json';
@@ -27,5 +29,7 @@ if ($cur != NULL && $new != NULL && $confirm != NULL) {
         'confirm'=>confirm
     );
     $str = json_encode($data);
-    file_put_contents($file, $str)
+    file_put_contents($file, $str);
 }
+
+?>

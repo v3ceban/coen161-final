@@ -1,4 +1,6 @@
-file = 'dates.json';
+<?php
+
+$file = 'dates.json';
 
 if (isset($_GET["month"])){
     $mo = $_GET["month"];
@@ -41,3 +43,5 @@ if ($start != NULL && $end != NULL) {
     $str2 = json_encode($times);
     file_put_contents($file2, $times)
 }
+
+?>
