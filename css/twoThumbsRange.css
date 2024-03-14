@@ -23,7 +23,7 @@ input[type="range"] {
   color: #6682fc;
   font: inherit;
   pointer-events: none;
-  transform: translateY(15%);
+  transform: translateY(5px);
   cursor: pointer;
 }
 

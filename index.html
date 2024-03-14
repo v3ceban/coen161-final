@@ -37,7 +37,7 @@
     </header>
     <aside>
       <h2>Welcome</h2>
-      <form method="POST" action="login.php" id="loginForm">
+      <form method="POST" id="loginForm">
         <label>Email
           <input type="email" name="email" placeholder="Email" required /></label>
         <label>Password
@@ -78,7 +78,7 @@
         </form>
         <h3>Chose time</h3>
         <p>Add time slots that fit your schedule</p>
-        <form method="POST" action="time.php" id="timeForm">
+        <form method="POST" id="timeForm">
           <select name="date" id="dateSelector">
             <!--Only selected days should appear in the options here-->
           </select>
@@ -105,7 +105,7 @@
           <div class="calendarContainer"></div>
           <div class="calendarContainer"></div>
         </div>
-        <form method="POST" action="share.php" id="shareForm">
+        <form method="POST" id="shareForm">
           <label>
             Looking good?
             <button>Copy share link</button>
@@ -125,7 +125,7 @@
       </select>
       <section>
         <h2>Change email</h2>
-        <form method="POST" action="changeEmail.php" id="changeEmailForm">
+        <form method="POST" id="changeEmailForm">
           <label>
             New email
             <input type="email" name="newEmail" placeholder="new-email@example.com" required />
@@ -138,7 +138,7 @@
           <button type="reset">Cancel</button>
         </form>
         <h2>Change password</h2>
-        <form method="POST" action="changePassword.php" id="changePasswordForm">
+        <form method="POST" id="changePasswordForm">
           <label>
             Current password
             <input type="password" name="currentPassword" placeholder="Current password" required />
