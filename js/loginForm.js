@@ -1,13 +1,32 @@
-function loginForm() {
+async function loginForm() {
   const form = document.getElementById("loginForm");
 
-  // handle submission here
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
-    console.log(data.email, data.password);
-    // Send to PHP
+    let login = false;
+
+    try {
+      const response = await fetch("../jsons/data.json");
+      const json = await response.json();
+
+      json.forEach((obj) => {
+        if (obj.email === data.email && obj.password === data.password) {
+          login = true;
+          return;
+        }
+      });
+
+      if (login) {
+        // eslint-disable-next-line no-undef
+        changeAppState("event");
+      } else {
+        alert("Incorrect email or password");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   form.querySelectorAll("a").forEach((link, index) => {
@@ -48,6 +67,7 @@ function loginForm() {
           const data = Object.fromEntries(formData);
           // validate and handle data here
           console.log(data.email);
+          // Send to PHP
         });
 
         const cancelButton = document.createElement("button");
@@ -102,6 +122,7 @@ function loginForm() {
           const data = Object.fromEntries(formData);
           // validate and handle data here
           console.log(data.email, data.password);
+          // Send to PHP
         });
 
         const cancelButton = document.createElement("button");
