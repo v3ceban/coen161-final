@@ -40,6 +40,9 @@ function myCalendarSelector() {
     checkbox.type = "checkbox";
     checkbox.name = "day";
     checkbox.value = `${toTwoDigits(year)} - ${toTwoDigits(month)} - ${toTwoDigits(value)}`;
+    checkbox.addEventListener("click", (e) => {
+      e.preventDefault();
+    });
 
     label.appendChild(document.createTextNode(day));
     label.appendChild(checkbox);
@@ -47,43 +50,42 @@ function myCalendarSelector() {
     label.className = getDayName(firstDay, index);
 
     label.addEventListener("mousedown", () => {
+      isDragging = true;
       checkbox.checked = !checkbox.checked;
-      label.classList.toggle("active", checkbox.checked);
       lastCheckedCheckbox = checkbox;
+      const value = checkbox.value.replace(/\s/g, "");
       if (checkbox.checked) {
-        dates.push(`${toTwoDigits(year)}-${toTwoDigits(month)}-${toTwoDigits(value)}`);
-        updateSelector(dates);
-        renderCalendars(dates);
+        label.classList.add("active");
+      } else {
+        label.classList.remove("active");
       }
-      else {
-        dates = dates.filter((date) => date !== `${toTwoDigits(year)}-${toTwoDigits(month)}-${toTwoDigits(value)}`);
-        updateSelector(dates);
-        renderCalendars(dates);
+      if (checkbox.checked && !dates.includes(value)) {
+        dates.push(value);
+      } else if (!checkbox.checked && dates.includes(value)) {
+        dates = dates.filter((date) => date !== value);
       }
+      renderCalendars(dates);
     });
 
-    label.addEventListener("mouseover", (event) => {
-        if (isDragging) {
-            const currentCheckbox = checkbox;
-            if (currentCheckbox !== lastCheckedCheckbox) {
-                currentCheckbox.checked = lastCheckedCheckbox.checked;
-                label.classList.toggle("active", currentCheckbox.checked);
-                lastCheckedCheckbox = currentCheckbox;
-                if (checkbox.checked) {
-                  dates.push(`${toTwoDigits(year)}-${toTwoDigits(month)}-${toTwoDigits(value)}`);
-                  updateSelector(dates);
-                  renderCalendars(dates);
-                }
-                else {
-                  dates = dates.filter((date) => date !== `${toTwoDigits(year)}-${toTwoDigits(month)}-${toTwoDigits(value)}`);
-                  updateSelector(dates);
-                  renderCalendars(dates);
-                }
-            }
+    label.addEventListener("mouseover", () => {
+      if (isDragging) {
+        const currentCheckbox = checkbox;
+        const value = checkbox.value.replace(/\s/g, "");
+        if (currentCheckbox !== lastCheckedCheckbox) {
+          currentCheckbox.checked = lastCheckedCheckbox.checked;
+          label.classList.toggle("active");
+          lastCheckedCheckbox = currentCheckbox;
+          if (checkbox.checked && !dates.includes(value)) {
+            dates.push(value);
+          } else if (!checkbox.checked && dates.includes(value)) {
+            dates = dates.filter((date) => date !== value);
+          }
+          renderCalendars(dates);
         }
+      }
     });
     return label;
-}
+  }
 
   // Year object
   function addYear(year) {
@@ -186,7 +188,7 @@ function myCalendarSelector() {
     }
   }
 
-  // Add years 5 years ago and 5 years ahead
+  // Add 5 years
   for (let i = 0; i < 5; i++) {
     if (i === 0) {
       addYear(currentYear);
