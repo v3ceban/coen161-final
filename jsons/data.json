@@ -3,30 +3,30 @@
     "id": "1",
     "email": "vceban@scu.edu",
     "password": "cod!ng123",
-    "eventID": "1, 2"
+    "eventID": ["1", "2"]
   },
   {
     "id": "2",
     "email": "dho@scu.edu",
     "password": "MondAy000",
-    "eventID": "1, 3"
+    "eventID": ["1", " 3"]
   },
   {
     "id": "3",
     "email": "mlassiter@scu.edu",
     "password": "CHS_843",
-    "eventID": "1, 2, 4"
+    "eventID": ["1", "2", "4"]
   },
   {
     "id": "4",
     "email": "jlake@gmail.com",
     "password": "golden7!>",
-    "eventID": "3, 4"
+    "eventID": ["3", "4"]
   },
   {
     "id": "5",
     "email": "abaker@yahoo.com",
     "password": "h3ll0%abc",
-    "eventID": "2, 3, 4"
+    "eventID": ["2", "3", "4"]
   }
 ]
