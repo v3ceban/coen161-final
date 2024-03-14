@@ -1,6 +1,7 @@
 [
   {
     "eventID": 1,
+    "name": "C++ Programming",
     "users": "1, 2, 3",
     "days": [
       {
@@ -49,6 +50,7 @@
   },
   {
     "eventID": 2,
+    "name": "Java Programming",
     "users": "1, 3, 5",
     "days": [
       {
@@ -82,6 +84,7 @@
   },
   {
     "eventID": 3,
+    "name": "Python Programming",
     "users": "2, 4, 5",
     "days": [
       {
@@ -121,6 +124,7 @@
   },
   {
     "eventID": 4,
+    "name": "C Programming",
     "users": "3, 5",
     "days": [
       {
