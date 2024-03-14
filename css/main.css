@@ -530,6 +530,10 @@ main .calendarContainer {
       rgba(147, 10, 10, 0.48));
 }
 
+#profile section:last-of-type {
+  display: none;
+}
+
 /* Overlay styles */
 #overlay {
   height: 100dvh;
