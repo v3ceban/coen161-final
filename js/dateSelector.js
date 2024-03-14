@@ -1,5 +1,6 @@
 function updateSelector(dates) {
     // Dates should be retrieved from calenderSelector.js
+    sorted_dates = dates.sort();
     const selector = document.getElementById("dateSelector");
     selector.innerHTML = "";
     for (let i = 0; i < dates.length; i++) {
@@ -9,6 +10,5 @@ function updateSelector(dates) {
         option.textContent = dates[i];
         selector.appendChild(option);
     }
+    // Send to PHP
 }
-
-dateSelector();

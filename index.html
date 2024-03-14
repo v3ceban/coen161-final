@@ -1,176 +1,266 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="src/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="src/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="src/favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="src/favicons/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="src/favicons/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <link rel="shortcut icon" href="src/favicons/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta
+      name="msapplication-config"
+      content="src/favicons/browserconfig.xml"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <script src="js/calendarSelector.js" defer></script>
+    <script src="js/timeSelector.js" defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"
+      defer
+    ></script>
+    <script src="js/renderCalendars.js" defer></script>
+    <script src="js/loginForm.js" defer></script>
+    <script src="js/dateSelector.js" defer></script>
+    <script src="js/nameEvent.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>When to Meet++</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="apple-touch-icon" sizes="180x180" href="src/favicons/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="src/favicons/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="src/favicons/favicon-16x16.png" />
-  <link rel="manifest" href="src/favicons/site.webmanifest" />
-  <link rel="mask-icon" href="src/favicons/safari-pinned-tab.svg" color="#5bbad5" />
-  <link rel="shortcut icon" href="src/favicons/favicon.ico" />
-  <meta name="msapplication-TileColor" content="#da532c" />
-  <meta name="msapplication-config" content="src/favicons/browserconfig.xml" />
-  <meta name="theme-color" content="#ffffff" />
-  <script src="js/calendarSelector.js" defer></script>
-  <script src="js/timeSelector.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js" defer></script>
-  <script src="js/renderCalendars.js" defer></script>
-  <script src="js/loginForm.js" defer></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="css/main.css" />
-  <title>When to Meet++</title>
-</head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>
+          <small>Better</small><br />When2Meet<span
+            class="fa-solid fa-calendar-check"
+          ></span>
+        </h1>
+        <button><span class="fa-solid fa-user"></span></button>
+      </header>
+      <aside>
+        <h2>Welcome</h2>
+        <form method="POST" action="login.php" id="loginForm">
+          <label
+            >Email
+            <input type="email" name="email" placeholder="Email" required
+          /></label>
+          <label
+            >Password
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+          /></label>
+          <a href="#">Forgot password?</a>
+          <button type="submit">Login</button>
+          <a href="#">Create an account</a>
+        </form>
+        <h3>About us</h3>
+        <p>
+          Better When2Meet is a web app that helps you plan your next meeting.
+          You can select the dates you want to met, set up your avaliability for
+          these dates, and share it with other people so they can do the same.
+          Then you just pick the time that works for everyone!
+        </p>
+        <h3>Privacy policy</h3>
+        <p>
+          We only store the necessary data. We never share it with anyone. No
+          ads, no tracking, no unnecessary data collection. Email and password
+          needed to save your events and give you the option to delete/edit
+          them. Each event stores invited people to display their avaliability.
+          That's all, folks.
+        </p>
+      </aside>
+      <main>
+        <section>
+          <h2 id="event-name">Event name</h2>
+          <form method="POST" id="eventNameForm">
+            <label
+              >Name event
+              <input
+                id="event-name-input"
+                type="text"
+                placeholder="My cool event"
+                required
+            /></label>
+            <button type="submit" id="event-name-button">Change name</button>
+          </form>
+          <h3>Chose dates</h3>
+          <form method="POST" id="datesForm">
+            <select name="month"></select>
+            <select name="year"></select>
+            <div id="calendar"></div>
+          </form>
+          <h3>Chose time</h3>
+          <p>Add time slots that fit your schedule</p>
+          <form method="POST" action="time.php" id="timeForm">
+            <select name="date" id="dateSelector">
+              <!--Only selected days should appear in the options here-->
+            </select>
+            <!--Values in input[type=time] should change with input[type=range] and vice versa-->
+            <input type="time" name="start" value="07:00" />
+            <input type="time" name="end" value="17:00" />
+            <div class="wrap" role="group">
+              <label class="sr-only" for="start">Start time</label>
+              <input
+                id="start"
+                type="range"
+                min="0"
+                value="7"
+                max="23.75"
+                step="0.25"
+              />
+              <label class="sr-only" for="end">End time</label>
+              <input
+                id="end"
+                type="range"
+                min="0.25"
+                value="17"
+                max="24"
+                step="0.25"
+              />
+            </div>
+            <button type="submit">Add</button>
+          </form>
+          <button>Preview</button>
+        </section>
+        <section>
+          <h2 id="event-name-2">Event name</h2>
+          <h3>Preview</h3>
+          <p>Select a time slot in the calendar to change or delete it</p>
+          <div id="main-container">
+            <!--Render a calendar for each day selected-->
 
-<body>
-  <div class="container">
-    <header>
-      <h1>
-        <small>Better</small><br />When2Meet<span class="fa-solid fa-calendar-check"></span>
-      </h1>
-      <button><span class="fa-solid fa-user"></span></button>
-    </header>
-    <aside>
-      <h2>Welcome</h2>
-      <form method="POST" action="login.php" id="loginForm">
-        <label>Email
-          <input type="email" name="email" placeholder="Email" required /></label>
-        <label>Password
-          <input type="password" name="password" placeholder="Password" required /></label>
-        <a href="#">Forgot password?</a>
-        <button type="submit">Login</button>
-        <a href="#">Create an account</a>
-      </form>
-      <h3>About us</h3>
-      <p>
-        Better When2Meet is a web app that helps you plan your next meeting.
-        You can select the dates you want to met, set up your avaliability for
-        these dates, and share it with other people so they can do the same.
-        Then you just pick the time that works for everyone!
-      </p>
-      <h3>Privacy policy</h3>
-      <p>
-        We only store the necessary data. We never share it with anyone. No
-        ads, no tracking, no unnecessary data collection. Email and password
-        needed to save your events and give you the option to delete/edit
-        them. Each event stores invited people to display their avaliability.
-        That's all, folks.
-      </p>
-    </aside>
-    <main>
-      <section>
-        <h2>Event name</h2>
-        <form method="POST" action="event.php" id="eventNameForm">
-          <label>Name event
-            <input type="text" placeholder="My cool event" required /></label>
-          <button type="submit">Change name</button>
-        </form>
-        <h3>Chose dates</h3>
-        <form method="POST" id="datesForm">
-          <select name="month"></select>
-          <select name="year"></select>
-          <div id="calendar"></div>
-        </form>
-        <h3>Chose time</h3>
-        <p>Add time slots that fit your schedule</p>
-        <form method="POST" action="time.php" id="timeForm">
-          <select name="date" id="dateSelector">
-            <!--Only selected days should appear in the options here-->
-            <option value="date1">Selected Date #1</option>
-            <option value="date2">Selected Date #2</option>
-          </select>
-          <!--Values in input[type=time] should change with input[type=range] and vice versa-->
-          <input type="time" name="start" value="07:00" />
-          <input type="time" name="end" value="17:00" />
-          <div class="wrap" role="group">
-            <label class="sr-only" for="start">Start time</label>
-            <input id="start" type="range" min="0" value="7" max="23.75" step="0.25" />
-            <label class="sr-only" for="end">End time</label>
-            <input id="end" type="range" min="0.25" value="17" max="24" step="0.25" />
+            <div class="calendarContainer"></div>
+            <div class="calendarContainer"></div>
           </div>
-          <button type="submit">Add</button>
-        </form>
-        <button>Preview</button>
-      </section>
-      <section>
-        <h2>Event name</h2>
-        <h3>Preview</h3>
-        <p>Select a time slot in the calendar to change or delete it</p>
-        <div>
-          <!--Render a calendar for each day selected-->
-          <div class="calendarContainer 2024-01-01"></div>
-          <div class="calendarContainer"></div>
-        </div>
-        <form method="POST" action="share.php" id="shareForm">
-          <label>
-            Looking good?
-            <button>Copy share link</button>
-          </label>
-          <label>
-            Invite people
-            <input type="email" name="invitation" placeholder="email@example.com" />
-          </label>
-          <button type="submit">Send</button>
-        </form>
-      </section>
-    </main>
-    <aside id="profile">
-      <select name="profile">
-        <option value="profileSettings">Profile settings</option>
-        <option value="myEvents">My events</option>
-      </select>
-      <section>
-        <h2>Change email</h2>
-        <form method="POST" action="changeEmail.php" id="changeEmailForm">
-          <label>
-            New email
-            <input type="email" name="newEmail" placeholder="new-email@example.com" required />
-          </label>
-          <label>
-            Password
-            <input type="password" name="currentPassword" placeholder="Your password" required />
-          </label>
-          <button type="submit">Update</button>
-          <button type="reset">Cancel</button>
-        </form>
-        <h2>Change password</h2>
-        <form method="POST" action="changePassword.php" id="changePasswordForm">
-          <label>
-            Current password
-            <input type="password" name="currentPassword" placeholder="Current password" required />
-          </label>
-          <label>
-            New password
-            <input type="password" name="newPassword" placeholder="New password" required />
-          </label>
-          <label>
-            Confirm new password
-            <input type="password" name="newPassowrdConfirm" placeholder="Confirm new password" required />
-          </label>
-          <button type="submit">Update</button>
-          <button type="reset">Cancel</button>
-        </form>
-      </section>
-      <section>
-        <!---Render a card for each event user has-->
-        <div class="card">
-          <h2>Event name</h2>
-          <p>Dates: date 1, date 2, date 3</p>
-          <button>View</button>
-          <button>Delete</button>
-        </div>
-        <div class="card">
-          <h2>Event name</h2>
-          <p>Dates: date 1, date 2, date 3</p>
-          <button>View</button>
-          <button>Delete</button>
-        </div>
-      </section>
-    </aside>
-  </div>
-</body>
-
+          <form method="POST" action="share.php" id="shareForm">
+            <label>
+              Looking good?
+              <button>Copy share link</button>
+            </label>
+            <label>
+              Invite people
+              <input
+                type="email"
+                name="invitation"
+                placeholder="email@example.com"
+              />
+            </label>
+            <button type="submit">Send</button>
+          </form>
+        </section>
+      </main>
+      <aside id="profile">
+        <select name="profile">
+          <option value="profileSettings">Profile settings</option>
+          <option value="myEvents">My events</option>
+        </select>
+        <section>
+          <h2>Change email</h2>
+          <form method="POST" action="changeEmail.php" id="changeEmailForm">
+            <label>
+              New email
+              <input
+                type="email"
+                name="newEmail"
+                placeholder="new-email@example.com"
+                required
+              />
+            </label>
+            <label>
+              Password
+              <input
+                type="password"
+                name="currentPassword"
+                placeholder="Your password"
+                required
+              />
+            </label>
+            <button type="submit">Update</button>
+            <button type="reset">Cancel</button>
+          </form>
+          <h2>Change password</h2>
+          <form
+            method="POST"
+            action="changePassword.php"
+            id="changePasswordForm"
+          >
+            <label>
+              Current password
+              <input
+                type="password"
+                name="currentPassword"
+                placeholder="Current password"
+                required
+              />
+            </label>
+            <label>
+              New password
+              <input
+                type="password"
+                name="newPassword"
+                placeholder="New password"
+                required
+              />
+            </label>
+            <label>
+              Confirm new password
+              <input
+                type="password"
+                name="newPassowrdConfirm"
+                placeholder="Confirm new password"
+                required
+              />
+            </label>
+            <button type="submit">Update</button>
+            <button type="reset">Cancel</button>
+          </form>
+        </section>
+        <section>
+          <!---Render a card for each event user has-->
+          <div class="card">
+            <h2>Event name</h2>
+            <p>Dates: date 1, date 2, date 3</p>
+            <button>View</button>
+            <button>Delete</button>
+          </div>
+          <div class="card">
+            <h2>Event name</h2>
+            <p>Dates: date 1, date 2, date 3</p>
+            <button>View</button>
+            <button>Delete</button>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </body>
 </html>
