@@ -29,6 +29,18 @@ if (isset($_SESSION['userID'])) {
     }
   }
 
+  // function findUser($email, $password, $file)
+  // {
+  //   $searchID = $_SESSION['userID'];
+  //   foreach ($data as $user) {
+  //     if ($user["id"] == $searchID) {
+  //       file_put_contents($file, $email);
+  //       file_put_contents($file, $password);
+  //       return;
+  //     }
+  //   }
+  // }
+
   if (isset($userID) && $userID != "") {
     $_SESSION['userID'] = $userID;
     $_SESSION['email'] = $email;
