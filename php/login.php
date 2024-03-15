@@ -15,13 +15,11 @@ if (isset($_SESSION['userID'])) {
   if (isset($_POST["email"])) {
     $email = $_POST["email"];
     $file = 'data.json';
-    file_put_contents($file, $email);
   }
 
   if (isset($_POST["password"])) {
     $password = $_POST["password"];
     $file = 'data.json';
-    file_put_contents($file, $password);
   }
 
   if (isset($data)) {
@@ -30,6 +28,17 @@ if (isset($_SESSION['userID'])) {
         $userID = $value["id"];
 
         break;
+      }
+    }
+  }
+
+  function findUser($email, $password, $file) {
+    $searchID = $_SESSION['userID'];
+    foreach ($data as $user) {
+      if ($user["id"] == $searchID) {
+        file_put_contents($file, $email);
+        file_put_contents($file, $password);
+        return;
       }
     }
   }
