@@ -36,9 +36,21 @@ function myCalendarSelector() {
   function createLabel(day, year, month, value, firstDay, index) {
     const label = document.createElement("label");
     const checkbox = document.createElement("input");
+    const date = checkbox.value.replace(/\s/g, "");
+    if (dates.includes(date)) {
+      label.classList.add("active");
+      checkbox.checked = true;
+    }
     checkbox.type = "checkbox";
     checkbox.name = "day";
+<<<<<<< Updated upstream
     checkbox.value = `${toTwoDigits(year)}-${toTwoDigits(month)}-${toTwoDigits(value)}`;
+=======
+    checkbox.value = `${toTwoDigits(year)} - ${toTwoDigits(month)} - ${toTwoDigits(day)}`;
+    checkbox.addEventListener("click", (e) => {
+      e.preventDefault();
+    });
+>>>>>>> Stashed changes
 
     label.appendChild(document.createTextNode(day));
     label.appendChild(checkbox);
@@ -47,6 +59,7 @@ function myCalendarSelector() {
 
     label.addEventListener("mousedown", () => {
       checkbox.checked = !checkbox.checked;
+<<<<<<< Updated upstream
       label.classList.toggle("active", checkbox.checked);
       lastCheckedCheckbox = checkbox;
     });
@@ -59,6 +72,32 @@ function myCalendarSelector() {
                 label.classList.toggle("active", currentCheckbox.checked);
                 lastCheckedCheckbox = currentCheckbox;
             }
+=======
+      currentCheckbox = checkbox;
+      if (checkbox.checked) {
+        label.classList.add("active");
+      } else {
+        label.classList.remove("active");
+      }
+      if (checkbox.checked && !dates.includes(date)) {
+        dates.push(date);
+      } else if (!checkbox.checked && dates.includes(date)) {
+        dates = dates.filter((day) => day !== date);
+      }
+      updateSelector(dates);
+      renderCalendars(dates);
+    });
+
+    label.addEventListener("mouseover", () => {
+      if (isDragging && checkbox.checked !== currentCheckbox.checked) {
+        currentCheckbox = checkbox;
+        label.classList.toggle("active");
+        currentCheckbox.checked = !currentCheckbox.checked;
+        if (checkbox.checked && !dates.includes(date)) {
+          dates.push(date);
+        } else if (!checkbox.checked && dates.includes(date)) {
+          dates = dates.filter((day) => day !== date);
+>>>>>>> Stashed changes
         }
     });
     return label;
