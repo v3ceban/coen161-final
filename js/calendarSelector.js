@@ -16,6 +16,7 @@ function myCalendarSelector() {
   ];
   let dates = [];
   let isDragging = false;
+  let currentCheckbox = null;
 
   window.addEventListener("mousedown", () => {
     isDragging = true;
@@ -50,6 +51,7 @@ function myCalendarSelector() {
 
     label.addEventListener("mousedown", () => {
       checkbox.checked = !checkbox.checked;
+      currentCheckbox = checkbox;
       const value = checkbox.value.replace(/\s/g, "");
       if (checkbox.checked) {
         label.classList.add("active");
@@ -66,8 +68,8 @@ function myCalendarSelector() {
     });
 
     label.addEventListener("mouseover", () => {
-      if (isDragging) {
-        const currentCheckbox = checkbox;
+      if (isDragging && checkbox.checked !== currentCheckbox.checked) {
+        currentCheckbox = checkbox;
         const value = checkbox.value.replace(/\s/g, "");
         label.classList.toggle("active");
         currentCheckbox.checked = !currentCheckbox.checked;
