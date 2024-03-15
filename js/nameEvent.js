@@ -4,6 +4,9 @@ eventNameButton.addEventListener('click', (e) => {
     let eventName = document.getElementById('event-name');
     let eventName2 = document.getElementById('event-name-2');
     let event = document.getElementById('event-name-input').value;
+    if (event === "") {
+        event = "My Event";
+    }
     eventName.innerHTML = event;
     eventName2.innerHTML = event;
     // Send to PHP

@@ -1,3 +1,14 @@
+function userAuthentication(userID) {
+  if (!isNaN(userID) && userID > 0 && userID !== "") {
+    // eslint-disable-next-line no-undef
+    displayProfileEvents(userID);
+    // eslint-disable-next-line no-undef
+    changeAppState("event");
+    return true;
+  } else {
+    return false;
+  }
+}
 async function loginForm() {
   document.addEventListener("DOMContentLoaded", async () => {
     let xhr = new XMLHttpRequest();
@@ -6,13 +17,7 @@ async function loginForm() {
     xhr.onreadystatechange = function() {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
-          const userID = xhr.responseText;
-          if (!isNaN(userID) && userID > 0 && userID !== "") {
-            // eslint-disable-next-line no-undef
-            displayProfileEvents(userID);
-            // eslint-disable-next-line no-undef
-            changeAppState("event");
-          }
+          userAuthentication(xhr.responseText);
         } else {
           console.error("Error: " + xhr.status);
         }
@@ -34,12 +39,8 @@ async function loginForm() {
     xhr.onreadystatechange = function() {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
-          const userID = xhr.responseText;
-          if (!isNaN(userID) && userID > 0 && userID !== "") {
-            // eslint-disable-next-line no-undef
-            displayProfileEvents(userID);
-            // eslint-disable-next-line no-undef
-            changeAppState("event");
+          if (userAuthentication(xhr.responseText)) {
+            form.reset();
           } else {
             alert("Invalid email or password");
           }
