@@ -20,11 +20,6 @@ if (isset($_SESSION['userID'])) {
     $password = $_POST["password"];
   }
 
-  // if (isset($_SESSION['timeout']) && $_SESSION['timeout'] < time()) {
-  //   session_unset();
-  //   session_destroy();
-  // }
-  //
   if (isset($data)) {
     foreach ($data as $key => $value) {
       if ($value["email"] == $email && $value["password"] == $password) {
@@ -38,7 +33,6 @@ if (isset($_SESSION['userID'])) {
     $_SESSION['userID'] = $userID;
     $_SESSION['email'] = $email;
     $_SESSION['password'] = $password;
-    // $_SESSION['timeout'] = time() + 15;
     echo $_SESSION['userID'];
   }
 }

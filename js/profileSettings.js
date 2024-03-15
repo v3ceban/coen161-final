@@ -23,11 +23,11 @@ function profileSettings() {
   );
   profileSelect.addEventListener("change", (e) => {
     if (e.target.value === "myEvents") {
-      document.querySelectorAll("#profile section")[0].style.display = "none";
-      document.querySelectorAll("#profile section")[1].style.display = "block";
-    } else {
       document.querySelectorAll("#profile section")[0].style.display = "block";
       document.querySelectorAll("#profile section")[1].style.display = "none";
+    } else {
+      document.querySelectorAll("#profile section")[0].style.display = "none";
+      document.querySelectorAll("#profile section")[1].style.display = "block";
     }
   });
 }

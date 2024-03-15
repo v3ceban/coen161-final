@@ -118,10 +118,12 @@
       </section>
     </main>
     <aside id="profile">
+      <h2>Hello, <span id="profile-name"></span></h2>
       <select name="profile">
-        <option value="profileSettings">Profile settings</option>
         <option value="myEvents">My events</option>
+        <option value="profileSettings">Profile settings</option>
       </select>
+      <section id="userEvents"></section>
       <section>
         <h2>Change email</h2>
         <form method="POST" id="changeEmailForm">
@@ -153,8 +155,6 @@
           <button type="submit">Update</button>
           <button type="reset">Cancel</button>
         </form>
-      </section>
-      <section id="userEvents">
       </section>
     </aside>
   </div>

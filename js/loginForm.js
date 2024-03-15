@@ -7,12 +7,11 @@ async function loginForm() {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
           const userID = xhr.responseText;
-          console.log(userID);
-          if (!isNaN(userID) && userID > 0) {
+          if (!isNaN(userID) && userID > 0 && userID !== "") {
             // eslint-disable-next-line no-undef
             displayProfileEvents(userID);
             // eslint-disable-next-line no-undef
-            changeAppState("profile");
+            changeAppState("event");
           }
         } else {
           console.error("Error: " + xhr.status);
@@ -36,10 +35,14 @@ async function loginForm() {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
           const userID = xhr.responseText;
-          // eslint-disable-next-line no-undef
-          displayProfileEvents(userID);
-          // eslint-disable-next-line no-undef
-          changeAppState("profile");
+          if (!isNaN(userID) && userID > 0 && userID !== "") {
+            // eslint-disable-next-line no-undef
+            displayProfileEvents(userID);
+            // eslint-disable-next-line no-undef
+            changeAppState("event");
+          } else {
+            alert("Invalid email or password");
+          }
         } else {
           console.error("Error: " + xhr.status);
         }
