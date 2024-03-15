@@ -144,14 +144,21 @@ async function loginForm() {
         submitButton.textContent = "Create account";
         submitButton.addEventListener("click", (e) => {
           e.preventDefault();
-          let xhr2 = new XMLHttpRequest();
-          xhr2.open("POST", "../php/login.php", true);
-          xhr2.send("email=" + data.email + "&password=" + data.password);
           const formData = new FormData(overlayForm);
           const data = Object.fromEntries(formData);
-          // validate and handle data here
-          console.log(data.email, data.password);
-          // Send to PHP
+          let xhr2 = new XMLHttpRequest();
+          xhr2.open("POST", "../php/newAccount.php", true);
+          xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+          xhr2.send("email=" + data.email + "&password=" + data.password);
+          xhr2.onreadystatechange = function() {
+            if (xhr2.readyState === XMLHttpRequest.DONE) {
+              if (xhr2.status === 200) {
+                console.log(xhr2.responseText);
+              } else {
+                console.error("Error: " + xhr2.status);
+              }
+            }
+          };
         });
 
         const cancelButton = document.createElement("button");
