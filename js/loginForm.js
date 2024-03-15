@@ -51,6 +51,9 @@ async function loginForm() {
   form.querySelectorAll("a").forEach((link, index) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "../php/login.php", true);
+      xhr.send();
       if (index === 0) {
         const overlay = document.createElement("div");
         overlay.setAttribute("id", "overlay");
@@ -137,6 +140,9 @@ async function loginForm() {
         submitButton.textContent = "Create account";
         submitButton.addEventListener("click", (e) => {
           e.preventDefault();
+          let xhr2 = new XMLHttpRequest();
+          xhr2.open("POST", "../php/login.php", true);
+          xhr2.send("email=" + data.email + "&password=" + data.password);
           const formData = new FormData(overlayForm);
           const data = Object.fromEntries(formData);
           // validate and handle data here

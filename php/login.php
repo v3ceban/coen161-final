@@ -14,10 +14,14 @@ if (isset($_SESSION['userID'])) {
 
   if (isset($_POST["email"])) {
     $email = $_POST["email"];
+    $file = 'data.json';
+    file_put_contents($file, $email);
   }
 
   if (isset($_POST["password"])) {
     $password = $_POST["password"];
+    $file = 'data.json';
+    file_put_contents($file, $password);
   }
 
   // if (isset($_SESSION['timeout']) && $_SESSION['timeout'] < time()) {
@@ -29,6 +33,7 @@ if (isset($_SESSION['userID'])) {
     foreach ($data as $key => $value) {
       if ($value["email"] == $email && $value["password"] == $password) {
         $userID = $value["id"];
+
         break;
       }
     }
@@ -41,4 +46,6 @@ if (isset($_SESSION['userID'])) {
     // $_SESSION['timeout'] = time() + 15;
     echo $_SESSION['userID'];
   }
+
+
 }
