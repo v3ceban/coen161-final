@@ -22,7 +22,6 @@ function profileSettings() {
     "#profile select[name='profile']",
   );
   profileSelect.addEventListener("change", (e) => {
-    console.log(e.target.value);
     if (e.target.value === "myEvents") {
       document.querySelectorAll("#profile section")[0].style.display = "none";
       document.querySelectorAll("#profile section")[1].style.display = "block";

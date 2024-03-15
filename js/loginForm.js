@@ -1,32 +1,51 @@
 async function loginForm() {
+  document.addEventListener("DOMContentLoaded", async () => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "../php/login.php", true);
+    xhr.send();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          const userID = xhr.responseText;
+          console.log(userID);
+          if (!isNaN(userID) && userID > 0) {
+            // eslint-disable-next-line no-undef
+            displayProfileEvents(userID);
+            // eslint-disable-next-line no-undef
+            changeAppState("profile");
+          }
+        } else {
+          console.error("Error: " + xhr.status);
+        }
+      }
+    };
+  });
+
   const form = document.getElementById("loginForm");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
-    let login = false;
 
-    try {
-      const response = await fetch("../jsons/data.json");
-      const json = await response.json();
-
-      json.forEach((obj) => {
-        if (obj.email === data.email && obj.password === data.password) {
-          login = true;
-          return;
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "../php/login.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("email=" + data.email + "&password=" + data.password);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          const userID = xhr.responseText;
+          // eslint-disable-next-line no-undef
+          displayProfileEvents(userID);
+          // eslint-disable-next-line no-undef
+          changeAppState("profile");
+        } else {
+          console.error("Error: " + xhr.status);
         }
-      });
-
-      if (login) {
-        // eslint-disable-next-line no-undef
-        changeAppState("event");
-      } else {
-        alert("Incorrect email or password");
       }
-    } catch (error) {
-      console.log(error);
-    }
+    };
+    return;
   });
 
   form.querySelectorAll("a").forEach((link, index) => {
