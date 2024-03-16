@@ -148,7 +148,10 @@ async function loginForm() {
           const data = Object.fromEntries(formData);
           let xhr2 = new XMLHttpRequest();
           xhr2.open("POST", "../php/newAccount.php", true);
-          xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+          xhr2.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded",
+          );
           xhr2.send("email=" + data.email + "&password=" + data.password);
           xhr2.onreadystatechange = function() {
             if (xhr2.readyState === XMLHttpRequest.DONE) {

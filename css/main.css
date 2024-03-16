@@ -448,15 +448,20 @@ main .calendarContainer {
   max-width: 310px;
   width: 100%;
   margin: 0 auto 60px;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 700;
-  text-transform: uppercase;
+  text-transform: initial;
+}
+
+#profile>button {
+  margin-bottom: 30px;
 }
 
 #profile h2 {
   font-size: 20px;
   text-align: left;
   text-transform: initial;
+  margin-bottom: 20px;
 }
 
 #profile form {
