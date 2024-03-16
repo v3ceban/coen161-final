@@ -1,5 +1,35 @@
 /* eslint-disable no-undef */
-function myCalendarSelector() {
+function prepareCalendars() {
+  const events = [];
+  const timeForm = document.getElementById("timeForm");
+  timeForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let formData = new FormData(timeForm);
+    const dateSelector = document.getElementById("dateSelector");
+    formData = Object.fromEntries(formData);
+    if (dateSelector.value === "Please select a date first") {
+      alert("Please select a date first");
+      return;
+    }
+    let event = {
+      title: "You",
+      start: dateSelector.value + "T" + formData.start + ":00",
+      end: dateSelector.value + "T" + formData.end + ":00",
+    };
+
+    alert("Time slot added");
+    events.push(event);
+  });
+
+  document.querySelector("#event>button").addEventListener("click", () => {
+    if (events.length > 0) {
+      renderCalendars(dates, events);
+      changeAppState("preview");
+    } else {
+      alert("Please add at least one time slot");
+    }
+  });
+
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth();
   const yearInput = document.querySelector("select[name='year']");
@@ -64,7 +94,7 @@ function myCalendarSelector() {
         dates = dates.filter((date) => date !== value);
       }
       updateSelector(dates);
-      renderCalendars(dates);
+      renderCalendars(dates, events);
     });
 
     label.addEventListener("mouseover", () => {
@@ -79,7 +109,7 @@ function myCalendarSelector() {
           dates = dates.filter((date) => date !== value);
         }
         updateSelector(dates);
-        renderCalendars(dates);
+        renderCalendars(dates, events);
       }
     });
 
@@ -232,4 +262,4 @@ function myCalendarSelector() {
   document.addEventListener("DOMContentLoaded", setDays);
 }
 
-myCalendarSelector();
+prepareCalendars();

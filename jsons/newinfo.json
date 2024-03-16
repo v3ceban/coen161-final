@@ -1,0 +1,29 @@
+[
+  {
+    "eventID": 1,
+    "name": "C++ Programming",
+    "users": ["vceban@scu.edu", "dho@scu.edu", "mlassiter@scu.edu"],
+    "days": [
+      {
+        "day": "2024-03-20",
+        "timeslots": [
+          {
+            "title": "vceban@scu.edu",
+            "start": "2024-03-20T09:00:00",
+            "end": "2024-03-20T12:00:00"
+          },
+          {
+            "title": "dho@scu.edu",
+            "start": "2024-03-20T13:00:00",
+            "end": "2024-03-20T16:00:00"
+          },
+          {
+            "title": "mlassiter@scu.edu",
+            "start": "2024-03-20T17:00:00",
+            "end": "2024-03-20T20:00:00"
+          }
+        ]
+      }
+    ]
+  }
+]
