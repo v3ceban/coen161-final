@@ -11,15 +11,15 @@ function userAuthentication(userID) {
 }
 async function loginForm() {
   document.addEventListener("DOMContentLoaded", async () => {
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../php/login.php", true);
-    xhr.send();
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          userAuthentication(xhr.responseText);
+    let checkSessionRec = new XMLHttpRequest();
+    checkSessionRec.open("POST", "../php/login.php", true);
+    checkSessionRec.send();
+    checkSessionRec.onreadystatechange = function() {
+      if (checkSessionRec.readyState === XMLHttpRequest.DONE) {
+        if (checkSessionRec.status === 200) {
+          userAuthentication(checkSessionRec.responseText);
         } else {
-          console.error("Error: " + xhr.status);
+          console.error("Error: " + checkSessionRec.status);
         }
       }
     };
@@ -32,20 +32,23 @@ async function loginForm() {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../php/login.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("email=" + data.email + "&password=" + data.password);
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          if (userAuthentication(xhr.responseText)) {
+    let loginRec = new XMLHttpRequest();
+    loginRec.open("POST", "../php/login.php", true);
+    loginRec.setRequestHeader(
+      "Content-Type",
+      "application/x-www-form-urlencoded",
+    );
+    loginRec.send("email=" + data.email + "&password=" + data.password);
+    loginRec.onreadystatechange = function() {
+      if (loginRec.readyState === XMLHttpRequest.DONE) {
+        if (loginRec.status === 200) {
+          if (userAuthentication(loginRec.responseText)) {
             form.reset();
           } else {
             alert("Invalid email or password");
           }
         } else {
-          console.error("Error: " + xhr.status);
+          console.error("Error: " + loginRec.status);
         }
       }
     };
@@ -55,9 +58,6 @@ async function loginForm() {
   form.querySelectorAll("a").forEach((link, index) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST", "../php/login.php", true);
-      xhr.send();
       if (index === 0) {
         const overlay = document.createElement("div");
         overlay.setAttribute("id", "overlay");
@@ -91,9 +91,22 @@ async function loginForm() {
           e.preventDefault();
           const formData = new FormData(overlayForm);
           const data = Object.fromEntries(formData);
-          // validate and handle data here
-          console.log(data.email);
-          // Send to PHP
+          let resetPassRec = new XMLHttpRequest();
+          resetPassRec.open("POST", "../php/resetPassword.php", true);
+          resetPassRec.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded",
+          );
+          resetPassRec.send("email=" + data.email);
+          resetPassRec.onreadystatechange = function() {
+            if (resetPassRec.readyState === XMLHttpRequest.DONE) {
+              if (resetPassRec.status === 200) {
+                console.log(resetPassRec.responseText);
+              } else {
+                console.error("Error: " + resetPassRec.status);
+              }
+            }
+          };
         });
 
         const cancelButton = document.createElement("button");
@@ -146,19 +159,21 @@ async function loginForm() {
           e.preventDefault();
           const formData = new FormData(overlayForm);
           const data = Object.fromEntries(formData);
-          let xhr2 = new XMLHttpRequest();
-          xhr2.open("POST", "../php/newAccount.php", true);
-          xhr2.setRequestHeader(
+          let createAccRec = new XMLHttpRequest();
+          createAccRec.open("POST", "../php/newAccount.php", true);
+          createAccRec.setRequestHeader(
             "Content-Type",
             "application/x-www-form-urlencoded",
           );
-          xhr2.send("email=" + data.email + "&password=" + data.password);
-          xhr2.onreadystatechange = function() {
-            if (xhr2.readyState === XMLHttpRequest.DONE) {
-              if (xhr2.status === 200) {
-                console.log(xhr2.responseText);
+          createAccRec.send(
+            "email=" + data.email + "&password=" + data.password,
+          );
+          createAccRec.onreadystatechange = function() {
+            if (createAccRec.readyState === XMLHttpRequest.DONE) {
+              if (createAccRec.status === 200) {
+                console.log(createAccRec.responseText);
               } else {
-                console.error("Error: " + xhr2.status);
+                console.error("Error: " + createAccRec.status);
               }
             }
           };
