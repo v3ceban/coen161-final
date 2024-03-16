@@ -39,7 +39,7 @@ function myCalendarSelector() {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.name = "day";
-    checkbox.value = `${toTwoDigits(year)} - ${toTwoDigits(month)} - ${toTwoDigits(value)}`;
+    checkbox.value = `${toTwoDigits(year)}-${toTwoDigits(month)}-${toTwoDigits(value)}`;
     checkbox.addEventListener("click", (e) => {
       e.preventDefault();
     });
@@ -52,7 +52,7 @@ function myCalendarSelector() {
     label.addEventListener("mousedown", () => {
       checkbox.checked = !checkbox.checked;
       currentCheckbox = checkbox;
-      const value = checkbox.value.replace(/\s/g, "");
+      const value = checkbox.value;
       if (checkbox.checked) {
         label.classList.add("active");
       } else {
@@ -185,6 +185,17 @@ function myCalendarSelector() {
       label.style.gridRow = Math.ceil((days + firstDay + i) / 7) + 1;
       calendarContainer.appendChild(label);
     }
+
+    const labels = calendarContainer.querySelectorAll("label");
+    const checkboxes = calendarContainer.querySelectorAll(
+      "input[type='checkbox']",
+    );
+    checkboxes.forEach((checkbox, i) => {
+      if (dates.includes(checkbox.value)) {
+        labels[i].classList.add("active");
+        checkbox.checked = true;
+      }
+    });
   }
 
   // Add 5 years
@@ -193,6 +204,7 @@ function myCalendarSelector() {
       addYear(currentYear);
     } else {
       addYear(currentYear + i);
+      addYear(currentYear - i); // if a person wants and can organize a meeting in the past - I'm not the one who will try to stop them
     }
   }
   calendar.sort((a, b) => a.year - b.year);

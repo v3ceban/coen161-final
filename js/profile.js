@@ -26,7 +26,7 @@ async function displayProfileEvents(userID) {
       <h2>${eventsJSON[event - 1].name}</h2>
       <p>Dates: ${eventsJSON[event - 1].days.map((obj) => obj.date).join(", ")}</p>
       <button>View</button>
-      <button>Delete</button>
+      <button class="danger">Delete</button>
     `;
     document.querySelector("#userEvents").appendChild(div);
   });

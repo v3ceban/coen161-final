@@ -87,6 +87,7 @@ async function loginForm() {
         const submitButton = document.createElement("button");
         submitButton.setAttribute("type", "submit");
         submitButton.textContent = "Reset password";
+        submitButton.classList.add("danger");
         submitButton.addEventListener("click", (e) => {
           e.preventDefault();
           const formData = new FormData(overlayForm);
@@ -112,6 +113,7 @@ async function loginForm() {
         const cancelButton = document.createElement("button");
         cancelButton.setAttribute("type", "reset");
         cancelButton.textContent = "Cancel";
+        cancelButton.classList.add("warning");
         cancelButton.addEventListener("click", () => {
           document.body.removeChild(overlay);
         });
@@ -182,6 +184,7 @@ async function loginForm() {
         const cancelButton = document.createElement("button");
         cancelButton.setAttribute("type", "reset");
         cancelButton.textContent = "Cancel";
+        cancelButton.classList.add("warning");
         cancelButton.addEventListener("click", () => {
           document.body.removeChild(overlay);
         });

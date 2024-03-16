@@ -118,6 +118,39 @@ button:active {
       rgba(30, 102, 245, 0.74));
 }
 
+button.warning {
+  background-color: #f6aa38;
+  background-image: linear-gradient(rgba(203, 157, 88, 0.4),
+      rgba(212, 164, 41, 0.36));
+}
+
+button.warning:hover {
+  background-image: linear-gradient(rgba(203, 157, 88, 0.6),
+      rgba(212, 164, 41, 0.56));
+}
+
+button.warning:active {
+  background-image: linear-gradient(rgba(203, 157, 88, 0.8),
+      rgba(212, 164, 41, 0.74));
+}
+
+button.danger {
+  margin-top: 0;
+  background-color: #fd7272;
+  background-image: linear-gradient(rgba(195, 45, 45, 0.4),
+      rgba(147, 10, 10, 0.36));
+}
+
+button.danger:hover {
+  background-image: linear-gradient(rgba(195, 45, 45, 0.5),
+      rgba(147, 10, 10, 0.4));
+}
+
+button.danger:active {
+  background-image: linear-gradient(rgba(195, 45, 45, 0.55),
+      rgba(147, 10, 10, 0.48));
+}
+
 header,
 main,
 aside {
@@ -477,22 +510,6 @@ main .calendarContainer {
   margin-top: 30px;
 }
 
-#profile form button[type="reset"] {
-  background-color: #f6aa38;
-  background-image: linear-gradient(rgba(203, 157, 88, 0.4),
-      rgba(212, 164, 41, 0.36));
-}
-
-#profile form button[type="reset"]:hover {
-  background-image: linear-gradient(rgba(203, 157, 88, 0.6),
-      rgba(212, 164, 41, 0.56));
-}
-
-#profile form button[type="reset"]:active {
-  background-image: linear-gradient(rgba(203, 157, 88, 0.8),
-      rgba(212, 164, 41, 0.74));
-}
-
 #profile .card {
   margin: 30px 0;
   background-image: linear-gradient(to bottom right,
@@ -520,19 +537,6 @@ main .calendarContainer {
 
 #profile .card button:last-of-type {
   margin-bottom: 0;
-  background-color: #fd7272;
-  background-image: linear-gradient(rgba(195, 45, 45, 0.4),
-      rgba(147, 10, 10, 0.36));
-}
-
-#profile .card button:last-of-type:hover {
-  background-image: linear-gradient(rgba(195, 45, 45, 0.5),
-      rgba(147, 10, 10, 0.4));
-}
-
-#profile .card button:last-of-type:active {
-  background-image: linear-gradient(rgba(195, 45, 45, 0.55),
-      rgba(147, 10, 10, 0.48));
 }
 
 #profile section:last-of-type {
@@ -588,21 +592,4 @@ main .calendarContainer {
 
 #overlay form button {
   margin: 15px 0;
-}
-
-#overlay form button:last-of-type {
-  margin-top: 0;
-  background-color: #fd7272;
-  background-image: linear-gradient(rgba(195, 45, 45, 0.4),
-      rgba(147, 10, 10, 0.36));
-}
-
-#overlay form button:last-of-type:hover {
-  background-image: linear-gradient(rgba(195, 45, 45, 0.5),
-      rgba(147, 10, 10, 0.4));
-}
-
-#overlay form button:last-of-type:active {
-  background-image: linear-gradient(rgba(195, 45, 45, 0.55),
-      rgba(147, 10, 10, 0.48));
 }

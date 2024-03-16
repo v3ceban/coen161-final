@@ -107,6 +107,9 @@
           <label>
             Looking good?
             <button onclick="event.preventDefault()">Copy share link</button>
+            <button class="warning" onclick="event.preventDefault(); changeAppState('event')">
+              Back
+            </button>
           </label>
           <label>
             Invite people
@@ -136,7 +139,7 @@
             <input type="password" name="currentPassword" placeholder="Your password" required />
           </label>
           <button type="submit">Update</button>
-          <button type="reset">Cancel</button>
+          <button type="reset" class="warning">Cancel</button>
         </form>
         <h2>Change password</h2>
         <form method="POST" id="changePasswordForm">
@@ -153,7 +156,7 @@
             <input type="password" name="newPassowrdConfirm" placeholder="Confirm new password" required />
           </label>
           <button type="submit">Update</button>
-          <button type="reset">Cancel</button>
+          <button type="reset" class="warning">Cancel</button>
         </form>
       </section>
     </aside>
