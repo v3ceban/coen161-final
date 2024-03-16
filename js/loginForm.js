@@ -4,6 +4,7 @@ function userAuthentication(userID) {
     displayProfileEvents(userID);
     // eslint-disable-next-line no-undef
     changeAppState("event");
+    localStorage.setItem("userID", userID);
     return true;
   } else {
     return false;
@@ -18,6 +19,7 @@ async function loginForm() {
       if (checkSessionRec.readyState === XMLHttpRequest.DONE) {
         if (checkSessionRec.status === 200) {
           userAuthentication(checkSessionRec.responseText);
+          localStorage.setItem("userID", checkSessionRec.responseText);
         } else {
           console.error("Error: " + checkSessionRec.status);
         }

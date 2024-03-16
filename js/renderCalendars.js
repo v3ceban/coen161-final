@@ -1,6 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 function renderCalendars(dates, events) {
   dates = dates.sort();
+  localStorage.setItem("dates", JSON.stringify(dates));
+  localStorage.setItem("events", JSON.stringify(events));
   const mainContainer = document.getElementById("main-container");
 
   const observer = new MutationObserver(() => {

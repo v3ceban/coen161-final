@@ -2,7 +2,7 @@
   {
     "eventID": 1,
     "name": "C++ Programming",
-    "users": ["vceban@scu.edu", "dho@scu.edu", "mlassiter@scu.edu"],
+    "users": [1, 2, 3],
     "days": [
       {
         "day": "2024-03-20",
