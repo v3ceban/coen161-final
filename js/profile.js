@@ -5,7 +5,7 @@ async function displayProfileEvents(userID) {
   const eventsRes = await fetch("../jsons/events.json");
   const eventsJSON = await eventsRes.json();
   const events = [];
-  const eventsContainer = document.querySelector("#userEvents");
+  const eventsContainer = document.querySelector("#profileEventsContainer");
   eventsContainer.innerHTML = "";
 
   eventsJSON.forEach((obj) => {
@@ -62,6 +62,22 @@ function profileSettings() {
             xhr.responseText !== ""
           ) {
             displayProfileEvents(xhr.responseText);
+            const eventsContainer = document.querySelector("#userEvents");
+            const newEvent = document.createElement("button");
+            newEvent.textContent = "Create new event";
+            newEvent.addEventListener("click", () => {
+              let newID = localStorage.getItem("newEventID");
+              newID++;
+              localStorage.setItem("newEventID", newID);
+              // eslint-disable-next-line no-undef
+              currentState = changeAppState("event");
+              profileButton
+                .querySelector("span")
+                .classList.replace("fa-xmark", "fa-bars");
+            });
+            if (eventsContainer.children.length === 1) {
+              eventsContainer.prepend(newEvent);
+            }
           } else {
             profileButton
               .querySelector("span")

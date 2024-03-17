@@ -44,7 +44,3 @@ if ($eventIndex !== null) {
 }
 
 file_put_contents('../jsons/events.json', json_encode($events, JSON_PRETTY_PRINT));
-
-echo $id;
-
-// echo "ID: $id\nName: $name\nParticipants: $participants[0]\nDates: $dates[0]\nStart Times: $startTimes[0]\nEnd Times: $endTimes[0]\n";
