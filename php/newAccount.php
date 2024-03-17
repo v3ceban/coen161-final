@@ -14,7 +14,7 @@ if (file_exists('../jsons/data.json')) {
   $usersArray = json_decode($users, true);
   if (!empty($usersArray)) {
     $lastUser = end($usersArray);
-    $lastID = $lastUser["id"]; }
+    $lastID = $lastUser["id"]; 
     // create a new object with new id in data.json (last id + 1)
   $userData = array(
     "id" => $lastID + 1,
@@ -23,6 +23,6 @@ if (file_exists('../jsons/data.json')) {
     "events" => [] // create an empty array of events in this object
   );
   $jsonUserData = json_encode($userData);
-  file_put_contents('../jsons/data.json', $jsonUserData);
-}
+  file_put_contents('../jsons/data.json', $jsonUserData, FILE_APPEND);
+}}
 ?>
