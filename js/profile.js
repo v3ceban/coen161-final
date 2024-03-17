@@ -2,13 +2,15 @@
 async function displayProfileEvents(userID) {
   const usersRes = await fetch("../jsons/data.json");
   const usersJSON = await usersRes.json();
-  const eventsRes = await fetch("../jsons/info.json");
+  const eventsRes = await fetch("../jsons/events.json");
   const eventsJSON = await eventsRes.json();
   const events = [];
+  const eventsContainer = document.querySelector("#userEvents");
+  eventsContainer.innerHTML = "";
 
   eventsJSON.forEach((obj) => {
-    if (obj.users.split(",").includes(userID)) {
-      events.push(obj.eventID);
+    if (obj.participants.includes(userID)) {
+      events.push(obj);
     }
   });
 
@@ -22,13 +24,25 @@ async function displayProfileEvents(userID) {
   events.forEach((event) => {
     const div = document.createElement("div");
     div.classList.add("card");
-    div.innerHTML = `
-      <h2>${eventsJSON[event - 1].name}</h2>
-      <p>Dates: ${eventsJSON[event - 1].days.map((obj) => obj.date).join(", ")}</p>
-      <button>View</button>
-      <button class="danger">Delete</button>
-    `;
-    document.querySelector("#userEvents").appendChild(div);
+    const h2 = document.createElement("h2");
+    h2.textContent = event.name;
+
+    const p = document.createElement("p");
+    p.textContent = "Dates: " + event.dates.join(", ");
+
+    const viewButton = document.createElement("button");
+    viewButton.textContent = "View";
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.classList.add("danger");
+
+    div.appendChild(h2);
+    div.appendChild(p);
+    div.appendChild(viewButton);
+    div.appendChild(deleteButton);
+
+    eventsContainer.appendChild(div);
   });
 }
 
@@ -36,6 +50,32 @@ function profileSettings() {
   const profileButton = document.querySelector("header button");
   let currentState;
   profileButton.addEventListener("click", (e) => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "../php/login.php", true);
+    xhr.send();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          if (
+            !isNaN(xhr.responseText) &&
+            xhr.responseText > 0 &&
+            xhr.responseText !== ""
+          ) {
+            displayProfileEvents(xhr.responseText);
+          } else {
+            profileButton
+              .querySelector("span")
+              .classList.replace("fa-xmark", "fa-bars");
+            currentState = "login";
+            // eslint-disable-next-line no-undef
+            logoutUser();
+          }
+        } else {
+          console.error("Error: " + xhr.status);
+        }
+      }
+    };
+
     e.preventDefault();
     if (currentState !== "profile") {
       // eslint-disable-next-line no-undef
@@ -68,20 +108,10 @@ function profileSettings() {
   const logoutButton = document.querySelector("#profile>button");
   logoutButton.addEventListener("click", (e) => {
     e.preventDefault();
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../php/login.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("logout=true");
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          // eslint-disable-next-line no-undef
-          currentState = changeAppState("login");
-        } else {
-          alert("Error: " + xhr.status);
-        }
-      }
-    };
+    // eslint-disable-next-line no-undef
+    logoutUser();
+    // eslint-disable-next-line no-undef
+    currentState = "login";
     profileButton
       .querySelector("span")
       .classList.replace("fa-xmark", "fa-bars");

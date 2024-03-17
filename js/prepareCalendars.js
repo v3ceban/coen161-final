@@ -2,6 +2,7 @@
 function prepareCalendars() {
   const events = [];
   const timeForm = document.getElementById("timeForm");
+  const mainContainer = document.getElementById("main-container");
   timeForm.addEventListener("submit", (e) => {
     e.preventDefault();
     let formData = new FormData(timeForm);
@@ -19,15 +20,8 @@ function prepareCalendars() {
 
     alert("Time slot added");
     events.push(event);
-  });
-
-  document.querySelector("#event>button").addEventListener("click", () => {
-    if (events.length > 0) {
-      renderCalendars(dates, events);
-      changeAppState("preview");
-    } else {
-      alert("Please add at least one time slot");
-    }
+    mainContainer.innerHTML = "";
+    renderCalendars(dates, events);
   });
 
   const currentYear = new Date().getFullYear();
@@ -94,6 +88,7 @@ function prepareCalendars() {
         dates = dates.filter((date) => date !== value);
       }
       updateSelector(dates);
+      mainContainer.innerHTML = "";
       renderCalendars(dates, events);
     });
 
@@ -109,6 +104,7 @@ function prepareCalendars() {
           dates = dates.filter((date) => date !== value);
         }
         updateSelector(dates);
+        mainContainer.innerHTML = "";
         renderCalendars(dates, events);
       }
     });

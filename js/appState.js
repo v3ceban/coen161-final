@@ -1,5 +1,5 @@
 function changeAppState(toDisplay) {
-  const states = ["login", "profile", "event", "preview"];
+  const states = ["login", "profile", "event"];
   const header = document.querySelector("header");
   const profileButton = document.querySelector("header button");
   let currentState;
@@ -8,9 +8,11 @@ function changeAppState(toDisplay) {
     const stateElement = document.getElementById(state);
     if (state === toDisplay) {
       currentState = state;
-      stateElement.style.display = "block";
+      stateElement.classList.remove("notCurrentState");
+      stateElement.classList.add("currentState");
     } else {
-      stateElement.style.display = "none";
+      stateElement.classList.remove("currentState");
+      stateElement.classList.add("notCurrentState");
       stateElement.style.animation =
         "fade-in 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both";
     }

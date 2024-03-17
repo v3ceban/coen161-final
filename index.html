@@ -14,10 +14,11 @@
   <meta name="msapplication-config" content="src/favicons/browserconfig.xml" />
   <meta name="theme-color" content="#ffffff" />
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js" defer></script>
+  <script src="js/logoutUser.js" defer"></script>
   <script src="js/prepareCalendars.js" defer></script>
   <script src="js/timeSelector.js" defer></script>
-  <script src="js/saveEvent.js" defer></script>
   <script src="js/renderCalendars.js" defer></script>
+  <script src="js/saveEvent.js" defer></script>
   <script src="js/profile.js" defer></script>
   <script src="js/loginForm.js" defer></script>
   <script src="js/dateSelector.js" defer></script>
@@ -65,8 +66,8 @@
         That's all, folks.
       </p>
     </aside>
-    <main>
-      <section id="event">
+    <main id="event">
+      <section>
         <h2 id="event-name">Event name</h2>
         <form method="POST" id="eventNameForm">
           <label>Name event
@@ -80,7 +81,10 @@
           <div id="calendar"></div>
         </form>
         <h3>Choose time</h3>
-        <p>Add time slots that fit your schedule</p>
+        <p>
+          Add time slots that fit your schedule (or you can add them in the
+          calendar on previw!)
+        </p>
         <form method="POST" id="timeForm">
           <select name="date" id="dateSelector">
             <!--Only selected days should appear in the options here-->
@@ -96,9 +100,8 @@
           </div>
           <button type="submit">Add</button>
         </form>
-        <button>Preview</button>
       </section>
-      <section id="preview">
+      <section>
         <h2 id="event-name-2">Event name</h2>
         <h3>Preview</h3>
         <p>Select a time slot in the calendar to change or delete it</p>
@@ -106,10 +109,7 @@
         <form method="POST" id="shareForm">
           <label>
             Looking good?
-            <button>Save event</button>
-            <button class="warning" onclick="event.preventDefault(); changeAppState('event')">
-              Back
-            </button>
+            <button id="saveEvent">Save event</button>
           </label>
           <label>
             Invite people

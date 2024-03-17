@@ -4,12 +4,12 @@ function userAuthentication(userID) {
     displayProfileEvents(userID);
     // eslint-disable-next-line no-undef
     changeAppState("event");
-    localStorage.setItem("userID", userID);
     return true;
   } else {
     return false;
   }
 }
+
 async function loginForm() {
   document.addEventListener("DOMContentLoaded", async () => {
     let checkSessionRec = new XMLHttpRequest();
@@ -19,7 +19,6 @@ async function loginForm() {
       if (checkSessionRec.readyState === XMLHttpRequest.DONE) {
         if (checkSessionRec.status === 200) {
           userAuthentication(checkSessionRec.responseText);
-          localStorage.setItem("userID", checkSessionRec.responseText);
         } else {
           console.error("Error: " + checkSessionRec.status);
         }
@@ -31,6 +30,12 @@ async function loginForm() {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    const eventsRes = await fetch("../jsons/events.json");
+    const eventsJSON = await eventsRes.json();
+    const newEventID = eventsJSON[eventsJSON.length - 1].id + 1;
+    localStorage.setItem("newEventID", newEventID);
+
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
 

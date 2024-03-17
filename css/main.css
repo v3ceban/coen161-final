@@ -173,6 +173,14 @@ aside {
   }
 }
 
+.currentState {
+  display: block;
+}
+
+.notCurrentState {
+  display: none;
+}
+
 /* Header */
 header {
   display: flex;
