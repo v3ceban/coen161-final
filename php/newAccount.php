@@ -22,10 +22,7 @@ if (file_exists('data.json')) {
     "password" => $password,
     "events" => [] // create an empty array of events in this object
   );
+  $jsonUserData = json_encode($userData);
+  file_put_contents('data.json', $jsonUserData);
 }
-
-
-$jsonUserData = json_encode($userData);
-file_put_contents('data.json', $jsonUserData);
-
 ?>
