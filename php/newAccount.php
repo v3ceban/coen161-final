@@ -14,7 +14,7 @@ if (file_exists('data.json')) {
   $usersArray = json_decode($users, true);
   if (!empty($usersArray)) {
     $lastUser = end($usersArray);
-    $lastID = $lastUser['id']; }
+    $lastID = $lastUser["id"]; }
 }
 
 // create a new object with new id in data.json (last id + 1)
