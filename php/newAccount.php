@@ -10,7 +10,7 @@ if (isset($_POST["password"])) {
 
 if (file_exists('../jsons/data.json')) {
 //determine last id
-  $users = file_get_contents('data.json');
+  $users = file_get_contents('../jsons/data.json');
   $usersArray = json_decode($users, true);
   if (!empty($usersArray)) {
     $lastUser = end($usersArray);
