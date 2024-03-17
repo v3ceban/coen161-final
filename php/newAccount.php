@@ -8,7 +8,7 @@ if (isset($_POST["password"])) {
   $password = $_POST["password"];
 }
 
-if (file_exists('data.json')) {
+if (file_exists('../jsons/data.json')) {
 //determine last id
   $users = file_get_contents('data.json');
   $usersArray = json_decode($users, true);
@@ -23,6 +23,6 @@ if (file_exists('data.json')) {
     "events" => [] // create an empty array of events in this object
   );
   $jsonUserData = json_encode($userData);
-  file_put_contents('data.json', $jsonUserData);
+  file_put_contents('../jsons/data.json', $jsonUserData);
 }
 ?>
