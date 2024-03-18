@@ -19,6 +19,7 @@ function changeAppState(toDisplay) {
   });
 
   if (currentState === "login") {
+    localStorage.clear();
     header.style.placeContent = "center";
     profileButton.style.display = "none";
   } else {

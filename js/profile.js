@@ -37,7 +37,8 @@ async function displayProfileEvents(userID) {
     viewButton.addEventListener("click", () => {
       document.getElementById("event-name-2").textContent = event.name;
       document.querySelectorAll("#event>section")[0].style.display = "none";
-      localStorage.setItem("displayedEventID", event.id);
+      // eslint-disable-next-line no-undef
+      renderCalendars([], []);
       // eslint-disable-next-line no-undef
       prepareCalendars();
       // eslint-disable-next-line no-undef
@@ -53,6 +54,34 @@ async function displayProfileEvents(userID) {
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.classList.add("danger");
+    deleteButton.addEventListener("click", () => {
+      if (confirm("Are you sure you want to delete this event?")) {
+        let delReq = new XMLHttpRequest();
+        delReq.open("POST", "../php/deleteEvent.php", true);
+        delReq.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded",
+        );
+
+        delReq.onreadystatechange = function() {
+          if (delReq.readyState === XMLHttpRequest.DONE) {
+            if (delReq.status === 200) {
+              if (delReq.responseText === "") {
+                alert(`You no longer participate in "${event.name}"`);
+                deleteButton.parentElement.remove();
+              } else {
+                alert("Error: " + delReq.responseText);
+              }
+            } else {
+              alert("Error: " + delReq.status);
+            }
+          }
+        };
+
+        console.log(event.id, userID);
+        delReq.send("eventID=" + event.id + "&userID=" + userID);
+      }
+    });
 
     div.appendChild(h2);
     div.appendChild(p);
@@ -89,7 +118,6 @@ function profileSettings() {
               document.querySelectorAll("#event>section")[0].style.display =
                 "block";
               localStorage.setItem("newEventID", newID);
-              localStorage.setItem("displayedEventID", newID);
               // eslint-disable-next-line no-undef
               prepareCalendars();
               // eslint-disable-next-line no-undef

@@ -1,28 +1,7 @@
 /* eslint-disable no-undef */
 function prepareCalendars() {
   const events = [];
-  const timeForm = document.getElementById("timeForm");
   const mainContainer = document.getElementById("main-container");
-  timeForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let formData = new FormData(timeForm);
-    const dateSelector = document.getElementById("dateSelector");
-    formData = Object.fromEntries(formData);
-    if (dateSelector.value === "Please select a date first") {
-      alert("Please select a date first");
-      return;
-    }
-    let event = {
-      title: "You",
-      start: dateSelector.value + "T" + formData.start + ":00",
-      end: dateSelector.value + "T" + formData.end + ":00",
-    };
-
-    alert("Time slot added");
-    events.push(event);
-    mainContainer.innerHTML = "";
-    renderCalendars(dates, events);
-  });
 
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth();

@@ -24,7 +24,7 @@ function saveEvent() {
       });
     });
 
-    const newEventID = localStorage.getItem("displayedEventID");
+    const newEventID = localStorage.getItem("newEventID");
     const userID = localStorage.getItem("userID");
     let name = document.getElementById("event-name-2").textContent;
     if (name === "Event name") {
@@ -41,9 +41,11 @@ function saveEvent() {
     saveRec.onreadystatechange = function() {
       if (saveRec.readyState === XMLHttpRequest.DONE) {
         if (saveRec.status === 200) {
-          console.log(saveRec.responseText);
+          alert(`Your event was saved as "${saveRec.responseText}"`);
+          document.getElementById("event-name-2").textContent =
+            saveRec.responseText;
         } else {
-          console.error("Error: " + saveRec.status);
+          alert("Error: " + saveRec.status);
         }
       }
     };

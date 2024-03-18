@@ -1,8 +1,21 @@
-function userAuthentication(userID) {
+async function userAuthentication(userID) {
   if (!isNaN(userID) && userID > 0 && userID !== "") {
     // eslint-disable-next-line no-undef
     displayProfileEvents(userID);
     localStorage.setItem("userID", userID);
+    const eventsRes = await fetch("../jsons/events.json");
+    const eventsJSON = await eventsRes.json();
+    const newEventID = eventsJSON[eventsJSON.length - 1].id + 1;
+    localStorage.setItem("newEventID", newEventID);
+
+    // eslint-disable-next-line no-undef
+    prepareCalendars();
+    // eslint-disable-next-line no-undef
+    renderCalendars([], []);
+    document.querySelectorAll("#event>section")[0].style.display =
+      "block";
+    document.getElementById("event-name-2").textContent =
+      document.getElementById("event-name").textContent;
     // eslint-disable-next-line no-undef
     changeAppState("event");
     return true;
@@ -31,11 +44,6 @@ async function loginForm() {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
-    const eventsRes = await fetch("../jsons/events.json");
-    const eventsJSON = await eventsRes.json();
-    const newEventID = eventsJSON[eventsJSON.length - 1].id + 1;
-    localStorage.setItem("newEventID", newEventID);
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);

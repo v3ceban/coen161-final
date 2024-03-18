@@ -91,3 +91,8 @@ textarea:not([rows]) {
 :target {
   scroll-margin-block: 5ex;
 }
+
+.fc-day-today {
+  background-color: transparent !important;
+  /* Remove the background color */
+}

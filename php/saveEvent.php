@@ -25,7 +25,8 @@ foreach ($times as $time) {
 
 $eventIndex = null;
 foreach ($events as $index => $event) {
-  if ($event['id'] == $id) {
+  if ($event['name'] === $name) {
+    $id = $event['id'];
     $eventIndex = $index;
     break;
   }
@@ -37,6 +38,10 @@ foreach ($times as $time => $participant) {
   if (!in_array($participant->title, $participants)) {
     $participants[] = $participant->title;
   }
+}
+
+if (!in_array($userID, $participants)) {
+  $participants[] = (string)$userID;
 }
 
 $newEvent = array(
@@ -55,10 +60,4 @@ if ($eventIndex !== null) {
 
 file_put_contents('../jsons/events.json', json_encode($events, JSON_PRETTY_PRINT));
 
-echo "$id\n";
-echo "$userID\n";
-echo "$name\n";
-print_r($dates);
-foreach ($times as $time) {
-  print_r($time);
-}
+echo "$name";
