@@ -1,3 +1,5 @@
+let currentSettingsState;
+
 // eslint-disable-next-line no-unused-vars
 async function displayProfileEvents(userID) {
   const usersRes = await fetch("../jsons/data.json");
@@ -32,6 +34,21 @@ async function displayProfileEvents(userID) {
 
     const viewButton = document.createElement("button");
     viewButton.textContent = "View";
+    viewButton.addEventListener("click", () => {
+      document.getElementById("event-name-2").textContent = event.name;
+      document.querySelectorAll("#event>section")[0].style.display = "none";
+      localStorage.setItem("displayedEventID", event.id);
+      // eslint-disable-next-line no-undef
+      prepareCalendars();
+      // eslint-disable-next-line no-undef
+      renderCalendars(event.dates, event.times);
+      // eslint-disable-next-line no-undef
+      currentSettingsState = changeAppState("event");
+      document
+        .querySelector("header button")
+        .querySelector("span")
+        .classList.replace("fa-xmark", "fa-bars");
+    });
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
@@ -48,7 +65,6 @@ async function displayProfileEvents(userID) {
 
 function profileSettings() {
   const profileButton = document.querySelector("header button");
-  let currentState;
   profileButton.addEventListener("click", (e) => {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "../php/login.php", true);
@@ -68,9 +84,15 @@ function profileSettings() {
             newEvent.addEventListener("click", () => {
               let newID = localStorage.getItem("newEventID");
               newID++;
+              document.querySelectorAll("#event>section")[0].style.display = "block";
               localStorage.setItem("newEventID", newID);
+              localStorage.setItem("displayedEventID", newID);
               // eslint-disable-next-line no-undef
-              currentState = changeAppState("event");
+              prepareCalendars();
+              // eslint-disable-next-line no-undef
+              renderCalendars([], []);
+              // eslint-disable-next-line no-undef
+              currentSettingsState = changeAppState("event");
               profileButton
                 .querySelector("span")
                 .classList.replace("fa-xmark", "fa-bars");
@@ -82,7 +104,7 @@ function profileSettings() {
             profileButton
               .querySelector("span")
               .classList.replace("fa-xmark", "fa-bars");
-            currentState = "login";
+            currentSettingsState = "login";
             // eslint-disable-next-line no-undef
             logoutUser();
           }
@@ -93,15 +115,15 @@ function profileSettings() {
     };
 
     e.preventDefault();
-    if (currentState !== "profile") {
+    if (currentSettingsState !== "profile") {
       // eslint-disable-next-line no-undef
-      currentState = changeAppState("profile");
+      currentSettingsState = changeAppState("profile");
       profileButton
         .querySelector("span")
         .classList.replace("fa-bars", "fa-xmark");
     } else {
       // eslint-disable-next-line no-undef
-      currentState = changeAppState("event");
+      currentSettingsState = changeAppState("event");
       profileButton
         .querySelector("span")
         .classList.replace("fa-xmark", "fa-bars");
@@ -127,7 +149,7 @@ function profileSettings() {
     // eslint-disable-next-line no-undef
     logoutUser();
     // eslint-disable-next-line no-undef
-    currentState = "login";
+    currentSettingsState = "login";
     profileButton
       .querySelector("span")
       .classList.replace("fa-xmark", "fa-bars");

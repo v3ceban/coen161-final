@@ -256,6 +256,7 @@ function prepareCalendars() {
   yearInput.addEventListener("change", setDays);
   monthInput.addEventListener("change", setDays);
   document.addEventListener("DOMContentLoaded", setDays);
+  setDays();
 }
 
 prepareCalendars();

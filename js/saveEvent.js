@@ -5,80 +5,61 @@ function saveEvent() {
 
     const calendars = document.querySelectorAll(".calendarContainer");
     const dates = [];
-    const startTimes = [];
-    const endTimes = [];
+    const times = [];
 
     calendars.forEach((calendar) => {
       const date = calendar.id;
       dates.push(date);
-      calendar.querySelectorAll(".fc-event-time").forEach((time) => {
+      calendar.querySelectorAll(".fc-event-time").forEach((time, index) => {
         const [start, end] = time.innerText.split(" - ");
         const formattedStart = `T${start}:00`;
         const formattedEnd = `T${end}:00`;
-        startTimes.push(date + formattedStart);
-        endTimes.push(date + formattedEnd);
+        const title =
+          calendar.querySelectorAll(".fc-event-title")[index].innerText;
+        times.push({
+          title: title,
+          start: date + formattedStart,
+          end: date + formattedEnd,
+        });
       });
     });
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../php/login.php", true);
-    xhr.send();
+    const newEventID = localStorage.getItem("displayedEventID");
+    const userID = localStorage.getItem("userID");
+    let name = document.getElementById("event-name-2").textContent;
+    if (name === "Event name") {
+      name = `New event #${newEventID}`;
+    }
 
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          if (
-            !isNaN(xhr.responseText) &&
-            xhr.responseText > 0 &&
-            xhr.responseText !== ""
-          ) {
-            const newEventID = localStorage.getItem("newEventID");
-            const userID = xhr.responseText;
-            let name = document.getElementById("event-name-2").textContent;
-            if (name === "Event name") {
-              name = `New event #${newEventID}`;
-            }
+    let saveRec = new XMLHttpRequest();
+    saveRec.open("POST", "../php/saveEvent.php", true);
+    saveRec.setRequestHeader(
+      "Content-Type",
+      "application/x-www-form-urlencoded",
+    );
 
-            let saveRec = new XMLHttpRequest();
-            saveRec.open("POST", "../php/saveEvent.php", true);
-            saveRec.setRequestHeader(
-              "Content-Type",
-              "application/x-www-form-urlencoded",
-            );
-
-            saveRec.send(
-              "id=" +
-              newEventID +
-              "&name=" +
-              encodeURIComponent(name) +
-              "&userID=" +
-              userID +
-              "&dates=" +
-              encodeURIComponent(JSON.stringify(dates)) +
-              "&startTimes=" +
-              encodeURIComponent(JSON.stringify(startTimes)) +
-              "&endTimes=" +
-              encodeURIComponent(JSON.stringify(endTimes)),
-            );
-
-            saveRec.onreadystatechange = function() {
-              if (saveRec.readyState === XMLHttpRequest.DONE) {
-                if (saveRec.status === 200) {
-                  console.log(saveRec.responseText);
-                } else {
-                  console.error("Error: " + saveRec.status);
-                }
-              }
-            };
-          } else {
-            // eslint-disable-next-line no-undef
-            logoutUser();
-          }
+    saveRec.onreadystatechange = function() {
+      if (saveRec.readyState === XMLHttpRequest.DONE) {
+        if (saveRec.status === 200) {
+          console.log(saveRec.responseText);
         } else {
-          console.error("Error: " + xhr.status);
+          console.error("Error: " + saveRec.status);
         }
       }
     };
+
+    saveRec.send(
+      "id=" +
+      newEventID +
+      "&userID=" +
+      userID +
+      "&name=" +
+      encodeURIComponent(name) +
+      "&dates=" +
+      encodeURIComponent(JSON.stringify(dates)) +
+      "&times=" +
+      encodeURIComponent(JSON.stringify(times)),
+    );
   });
 }
 

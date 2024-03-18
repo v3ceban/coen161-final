@@ -2,6 +2,7 @@ function userAuthentication(userID) {
   if (!isNaN(userID) && userID > 0 && userID !== "") {
     // eslint-disable-next-line no-undef
     displayProfileEvents(userID);
+    localStorage.setItem("userID", userID);
     // eslint-disable-next-line no-undef
     changeAppState("event");
     return true;

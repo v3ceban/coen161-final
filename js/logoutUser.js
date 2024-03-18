@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 function logoutUser() {
   localStorage.removeItem("newEventID");
+  localStorage.removeItem("userID");
 
   let xhr = new XMLHttpRequest();
   xhr.open("POST", "../php/login.php", true);
