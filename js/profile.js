@@ -84,7 +84,10 @@ function profileSettings() {
             newEvent.addEventListener("click", () => {
               let newID = localStorage.getItem("newEventID");
               newID++;
-              document.querySelectorAll("#event>section")[0].style.display = "block";
+              document.getElementById("event-name-2").textContent =
+                document.getElementById("event-name").textContent;
+              document.querySelectorAll("#event>section")[0].style.display =
+                "block";
               localStorage.setItem("newEventID", newID);
               localStorage.setItem("displayedEventID", newID);
               // eslint-disable-next-line no-undef

@@ -9,7 +9,7 @@ $times = json_decode($_POST['times']);
 $eventsData = file_get_contents('../jsons/events.json');
 $events = json_decode($eventsData, true);
 
-$usersData = file_get_contents('../jsons/users.json');
+$usersData = file_get_contents('../jsons/data.json');
 $users = json_decode($usersData, true);
 
 foreach ($times as $time) {
@@ -17,12 +17,11 @@ foreach ($times as $time) {
     $time->title = (string)$userID;
   }
   foreach ($users as $user) {
-    if ($user->id == $time->title) {
-      $time->title = $user->id;
+    if ($user['email'] == $time->title) {
+      $time->title = $user['id'];
     }
   }
 }
-
 
 $eventIndex = null;
 foreach ($events as $index => $event) {
@@ -39,18 +38,6 @@ foreach ($times as $time => $participant) {
     $participants[] = $participant->title;
   }
 }
-
-
-// $times = [];
-//
-// foreach ($startTimes as $index => $startTime) {
-//   $endTime = $endTimes[$index];
-//   $times[] = array(
-//     "title" => $participants[0],
-//     "start" => $startTime,
-//     "end" => $endTime
-//   );
-// }
 
 $newEvent = array(
   "id" => $id,
