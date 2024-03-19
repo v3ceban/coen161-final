@@ -1,7 +1,14 @@
 <?php
 
+require_once "login.php";
+
 $eventID = (int)$_POST['eventID'];
 $userID = (string)$_POST['userID'];
+
+if (!isset($_SESSION['userID']) || (int)$_SESSION['userID'] !== (int)$userID) {
+  echo "Not authorized";
+  return;
+}
 
 $eventsData = file_get_contents('../jsons/events.json');
 $events = json_decode($eventsData, true);

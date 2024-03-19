@@ -1,27 +1,34 @@
 <?php
 
-//receive variables from JS 
+require_once "login.php";
 
-$file = 'changePassword.json';
+$userID = $_POST['userID'];
+$password = $_POST['password'];
+$newPassword = $_POST['newPassword'];
+$confirmPassword = $_POST['confirmPassword'];
 
-if (isset($_GET["email"])){
-    $email = $_GET["email"];
-} else {
-    $email = null;
+if (!isset($_SESSION['userID']) || (int)$_SESSION['userID'] !== (int)$userID) {
+  echo "Not authorized. UserID: " . $userID . " Session: " . $_SESSION['userID'];
+  return;
 }
 
-if (isset($_GET["passw"])){
-    $pword = $_GET["passw"];
-} else {
-    $pword = null;
-}
+$usersData = file_get_contents('../jsons/data.json');
+$users = json_decode($usersData, true);
 
-if ($email != NULL && $pword != NULL) {
-    $data = array(
-        'email'=>$email, 'password'=>$pword
-    );
-    $str = json_encode($data);
-    file_put_contents($file, $str);
+foreach ($users as &$user) {
+  if ($user['id'] == $userID) {
+    if ((string)$password === (string)$user['password']) {
+      if ((string)$newPassword === (string)$confirmPassword) {
+        $user['password'] = $newPassword;
+        file_put_contents('../jsons/data.json', json_encode($users, JSON_PRETTY_PRINT));
+        return;
+      } else {
+        echo "Passwords do not match";
+        return;
+      }
+    } else {
+      echo "Wrong current password";
+      return;
+    }
+  }
 }
-
-?>

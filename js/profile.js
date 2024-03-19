@@ -66,7 +66,7 @@ async function displayProfileEvents(userID) {
         delReq.onreadystatechange = function() {
           if (delReq.readyState === XMLHttpRequest.DONE) {
             if (delReq.status === 200) {
-              if (delReq.responseText === "") {
+              if (delReq.responseText === userID) {
                 alert(`You no longer participate in "${event.name}"`);
                 deleteButton.parentElement.remove();
               } else {
@@ -78,7 +78,6 @@ async function displayProfileEvents(userID) {
           }
         };
 
-        console.log(event.id, userID);
         delReq.send("eventID=" + event.id + "&userID=" + userID);
       }
     });

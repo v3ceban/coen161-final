@@ -118,7 +118,12 @@ async function loginForm() {
           resetPassRec.onreadystatechange = function() {
             if (resetPassRec.readyState === XMLHttpRequest.DONE) {
               if (resetPassRec.status === 200) {
-                console.log(resetPassRec.responseText);
+                if (!document.getElementById("rickroll")) {
+                  overlayForm.innerHTML += resetPassRec.responseText;
+                  document.getElementById("rickroll").click();
+                  document.getElementById("rickroll").remove();
+                  document.body.removeChild(overlay);
+                }
               } else {
                 console.error("Error: " + resetPassRec.status);
               }
@@ -189,7 +194,13 @@ async function loginForm() {
           createAccRec.onreadystatechange = function() {
             if (createAccRec.readyState === XMLHttpRequest.DONE) {
               if (createAccRec.status === 200) {
-                console.log(createAccRec.responseText);
+                if (createAccRec.responseText === "Account created") {
+                  alert("Account created. Please log in!");
+                  document.body.removeChild(overlay);
+                } else {
+                  alert("Error: " + createAccRec.responseText);
+                  document.body.removeChild(overlay);
+                }
               } else {
                 console.error("Error: " + createAccRec.status);
               }

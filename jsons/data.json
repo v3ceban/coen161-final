@@ -1,27 +1,27 @@
 [
-  {
-    "id": "1",
-    "email": "vceban@scu.edu",
-    "password": "123"
-  },
-  {
-    "id": "2",
-    "email": "dho@scu.edu",
-    "password": "MondAy000"
-  },
-  {
-    "id": "3",
-    "email": "mlassiter@scu.edu",
-    "password": "CHS_843"
-  },
-  {
-    "id": "4",
-    "email": "jlake@gmail.com",
-    "password": "golden7!>"
-  },
-  {
-    "id": "5",
-    "email": "abaker@yahoo.com",
-    "password": "h3ll0%abc"
-  }
+    {
+        "id": "1",
+        "email": "vceban@scu.edu",
+        "password": "123"
+    },
+    {
+        "id": "2",
+        "email": "dho@scu.edu",
+        "password": "MondAy000"
+    },
+    {
+        "id": "3",
+        "email": "mlassiter@scu.edu",
+        "password": "CHS_843"
+    },
+    {
+        "id": "4",
+        "email": "jlake@gmail.com",
+        "password": "golden7!>"
+    },
+    {
+        "id": "5",
+        "email": "abaker@yahoo.com",
+        "password": "h3ll0%abc"
+    }
 ]

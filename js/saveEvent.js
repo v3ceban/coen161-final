@@ -41,9 +41,10 @@ function saveEvent() {
     saveRec.onreadystatechange = function() {
       if (saveRec.readyState === XMLHttpRequest.DONE) {
         if (saveRec.status === 200) {
-          alert(`Your event was saved as "${saveRec.responseText}"`);
+          const response = saveRec.responseText.replace(/^\d+/, '');
+          alert(`Your event was saved as "${response}"`);
           document.getElementById("event-name-2").textContent =
-            saveRec.responseText;
+            response;
         } else {
           alert("Error: " + saveRec.status);
         }

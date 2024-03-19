@@ -68,7 +68,6 @@ async function renderCalendars(dates, events) {
       event.color = "#6682FC";
       calendar.addEvent(event);
     });
-    // console.log(calendar.el.id);
     if (dates.includes(calendar.el.id)) {
       calendar.render();
     }
