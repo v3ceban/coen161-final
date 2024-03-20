@@ -118,6 +118,11 @@ button:active {
       rgba(30, 102, 245, 0.74));
 }
 
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
 button.warning {
   background-color: #f6aa38;
   background-image: linear-gradient(rgba(203, 157, 88, 0.4),
