@@ -72,18 +72,21 @@
     </aside>
     <main id="event" class="row">
       <section class="column">
-        <h2 id="event-name">Event name</h2>
-        <form method="POST" id="eventNameForm">
-          <label>Name event
-            <input id="event-name-input" type="text" placeholder="My cool event" required /></label>
-          <button type="submit" id="event-name-button">Change name</button>
-        </form>
-        <h3>Choose dates</h3>
-        <form method="POST" id="datesForm">
-          <select name="month"></select>
-          <select name="year"></select>
-          <div id="calendar"></div>
-        </form>
+        <div>
+          <h2 id="event-name">Event name</h2>
+          <form method="POST" id="eventNameForm">
+            <label>Name event
+              <input id="event-name-input" type="text" placeholder="My cool event" required /></label>
+            <button type="submit" id="event-name-button">Change name</button>
+          </form>
+          <h3>Choose dates</h3>
+          <form method="POST" id="datesForm">
+            <select name="month"></select>
+            <select name="year"></select>
+            <div id="calendar"></div>
+          </form>
+        </div>
+        
         <h3>Choose time</h3>
         <p>
           Add time slots that fit your schedule (or you can add them in the

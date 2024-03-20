@@ -12,7 +12,7 @@
 }
 
 /* iPads and tablets*/
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 600px) and (max-width: 990px){
     .row, .row2 {
         display: flex;
         flex-wrap: wrap;
@@ -24,7 +24,32 @@
 
     .column {
         flex: 50%;
-        padding: 20px;
+        padding: 50px;
+    }
+
+    header, main, aside {
+        max-width: 100%;
+    }
+}
+
+/* Laptops and desktops */
+@media screen and (min-width: 600px) and (max-width: 990px){
+    .row, .row2 {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .row {
+        width: 100%;
+    }
+
+    .column {
+        flex: 33%;
+        padding: 50px;
+    }
+
+    header, main, aside {
+        max-width: 100%;
     }
 }
 
