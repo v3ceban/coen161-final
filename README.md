@@ -19,6 +19,7 @@ When to Meet++ is a web app that helps you plan your next meeting. You can selec
 1. Clone the repository
 2. Run local php server with `php -S localhost:8000`
 3. Open `localhost:8000` in your browser
+4. If you plan to run this embedded in another website (not on root of the webserver), you might need to change JSON and PHP file paths in JavaScript files from `../path/to/file` to `./path/to/file`
 
 ## Usage
 
