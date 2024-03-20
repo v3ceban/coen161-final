@@ -2,31 +2,31 @@
     {
         "id": "1",
         "email": "vceban@scu.edu",
-        "password": "123"
+        "password": 48690
     },
     {
         "id": "2",
         "email": "dho@scu.edu",
-        "password": "MondAy000"
+        "password": 211132128
     },
     {
         "id": "3",
         "email": "mlassiter@scu.edu",
-        "password": "CHS_843"
+        "password": 1474041222
     },
     {
         "id": "4",
         "email": "jlake@gmail.com",
-        "password": "golden7!>"
+        "password": -1280125685
     },
     {
         "id": "5",
         "email": "abaker@yahoo.com",
-        "password": "h3ll0%abc"
+        "password": -104063582
     },
     {
         "id": "6",
         "email": "test@gmail.com",
-        "password": "AlmostDone"
+        "password": -1996953872
     }
 ]
