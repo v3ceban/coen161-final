@@ -1,3 +1,16 @@
+function hashPassword(password) {
+  let hash = 0;
+  if (password.length === 0) {
+    return hash;
+  }
+  for (let i = 0; i < password.length; i++) {
+    const char = password.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash;
+  }
+  return hash;
+}
+
 async function userAuthentication(userID) {
   if (!isNaN(userID) && userID > 0 && userID !== "") {
     // eslint-disable-next-line no-undef
@@ -54,7 +67,7 @@ async function loginForm() {
       "Content-Type",
       "application/x-www-form-urlencoded",
     );
-    loginRec.send("email=" + data.email + "&password=" + data.password);
+    loginRec.send("email=" + data.email + "&password=" + hashPassword(data.password));
     loginRec.onreadystatechange = function() {
       if (loginRec.readyState === XMLHttpRequest.DONE) {
         if (loginRec.status === 200) {
@@ -189,7 +202,7 @@ async function loginForm() {
             "application/x-www-form-urlencoded",
           );
           createAccRec.send(
-            "email=" + data.email + "&password=" + data.password,
+            "email=" + data.email + "&password=" + hashPassword(data.password),
           );
           createAccRec.onreadystatechange = function() {
             if (createAccRec.readyState === XMLHttpRequest.DONE) {
