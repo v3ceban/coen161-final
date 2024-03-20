@@ -1,5 +1,5 @@
 /* Mobile phones and devices*/
-@media screen and (max-width: 600) {
+@media screen and (max-width: 600px) {
     .row, .row2 {
         display: flex;
         flex-direction: column;
@@ -18,9 +18,13 @@
         flex-wrap: wrap;
     }
 
+    .row {
+        width: 100%;
+    }
+
     .column {
         flex: 50%;
-        padding: 20%;
+        padding: 20px;
     }
 }
 
