@@ -109,23 +109,27 @@
         </form>
       </section>
       <section class="column">
-        <div class="row2">
+        <div class="row">
           <h2 id="event-name-2">Event name</h2>
           <h3>Preview</h3>
           <p>Select a time slot in the calendar to change or delete it</p>
           <div id="main-container"></div>
         </div>
-        <div class="row2">
+        <div class="row">
           <form method="POST" id="shareForm">
-            <label>
-              Looking good?
-              <button id="saveEvent">Save event</button>
-            </label>
-            <label>
-              Invite people
-              <input type="email" name="invitation" placeholder="email@example.com" />
-            </label>
-            <button type="submit">Send</button>
+            <div class="column">
+              <label>
+                Looking good?
+                <button id="saveEvent">Save event</button>
+              </label>
+            </div>
+            <div class="column">
+              <label>
+                Invite people
+                <input type="email" name="invitation" placeholder="email@example.com" />
+              </label>
+              <button type="submit">Send</button>
+            </div>
           </form>
         </div>
         
