@@ -70,9 +70,9 @@
         That's all, folks.
       </p>
     </aside>
-    <main id="event">
-      <section class="row">
-        <div class="column">
+    <main id="event" class="row">
+      <section class="column">
+        <div>
           <h2 id="event-name">Event name</h2>
           <form method="POST" id="eventNameForm">
             <label>Name event
@@ -86,29 +86,27 @@
             <div id="calendar"></div>
           </form>
         </div>
-        <div class="column">
-          <h3>Choose time</h3>
-          <p>
-            Add time slots that fit your schedule (or you can add them in the
-            calendar on preview!)
-          </p>
-          <form method="POST" id="timeForm">
-            <select name="date" id="dateSelector">
-              <!--Only selected days should appear in the options here-->
-            </select>
-            <!--Values in input[type=time] should change with input[type=range] and vice versa-->
-            <input type="time" name="start" value="07:00" />
-            <input type="time" name="end" value="17:00" />
-            <div class="wrap" role="group">
-              <label class="sr-only" for="start">Start time</label>
-              <input id="start" type="range" min="0" value="7" max="23.75" step="0.25" />
-              <label class="sr-only" for="end">End time</label>
-              <input id="end" type="range" min="0.25" value="17" max="24" step="0.25" />
-            </div>
-            <button type="submit">Add</button>
-          </form>
-        </div>
         
+        <h3>Choose time</h3>
+        <p>
+          Add time slots that fit your schedule (or you can add them in the
+          calendar on previw!)
+        </p>
+        <form method="POST" id="timeForm">
+          <select name="date" id="dateSelector">
+            <!--Only selected days should appear in the options here-->
+          </select>
+          <!--Values in input[type=time] should change with input[type=range] and vice versa-->
+          <input type="time" name="start" value="07:00" />
+          <input type="time" name="end" value="17:00" />
+          <div class="wrap" role="group">
+            <label class="sr-only" for="start">Start time</label>
+            <input id="start" type="range" min="0" value="7" max="23.75" step="0.25" />
+            <label class="sr-only" for="end">End time</label>
+            <input id="end" type="range" min="0.25" value="17" max="24" step="0.25" />
+          </div>
+          <button type="submit">Add</button>
+        </form>
       </section>
       <section class="column">
         <div class="row">
