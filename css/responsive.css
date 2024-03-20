@@ -37,7 +37,8 @@
   }
 
   #event-name-2 {
-    transform: translateX(-350px);
+    position: absolute;
+    left: 60px;
   }
 }
 
