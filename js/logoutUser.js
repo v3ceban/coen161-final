@@ -2,6 +2,8 @@
 function logoutUser() {
   localStorage.removeItem("newEventID");
   localStorage.removeItem("userID");
+  document.getElementById("event-name").textContent = "";
+  document.getElementById("event-name-input").value = "";
 
   let xhr = new XMLHttpRequest();
   xhr.open("POST", "../php/login.php", true);
