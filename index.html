@@ -69,8 +69,8 @@
         That's all, folks.
       </p>
     </aside>
-    <main id="event">
-      <section>
+    <main id="event" class="row">
+      <section class="column">
         <h2 id="event-name">Event name</h2>
         <form method="POST" id="eventNameForm">
           <label>Name event
@@ -104,22 +104,27 @@
           <button type="submit">Add</button>
         </form>
       </section>
-      <section>
-        <h2 id="event-name-2">Event name</h2>
-        <h3>Preview</h3>
-        <p>Select a time slot in the calendar to change or delete it</p>
-        <div id="main-container"></div>
-        <form method="POST" id="shareForm">
-          <label>
-            Looking good?
-            <button id="saveEvent">Save event</button>
-          </label>
-          <label>
-            Invite people
-            <input type="email" name="invitation" placeholder="email@example.com" />
-          </label>
-          <button type="submit">Send</button>
-        </form>
+      <section class="column">
+        <div class="row2">
+          <h2 id="event-name-2">Event name</h2>
+          <h3>Preview</h3>
+          <p>Select a time slot in the calendar to change or delete it</p>
+          <div id="main-container"></div>
+        </div>
+        <div class="row2">
+          <form method="POST" id="shareForm">
+            <label>
+              Looking good?
+              <button id="saveEvent">Save event</button>
+            </label>
+            <label>
+              Invite people
+              <input type="email" name="invitation" placeholder="email@example.com" />
+            </label>
+            <button type="submit">Send</button>
+          </form>
+        </div>
+        
       </section>
     </main>
     <aside id="profile">
