@@ -26,7 +26,7 @@ if (file_exists('../jsons/data.json')) {
     $userData = array(
       "id" => (string)($lastID + 1),
       "email" => $email,
-      "password" => $password
+      "password" => (int)$password
     );
     $usersArray[] = $userData;
     $jsonUserData = json_encode($usersArray, JSON_PRETTY_PRINT);

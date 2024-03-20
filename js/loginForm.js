@@ -71,7 +71,7 @@ async function loginForm() {
     loginRec.onreadystatechange = function() {
       if (loginRec.readyState === XMLHttpRequest.DONE) {
         if (loginRec.status === 200) {
-          if (userAuthentication(loginRec.responseText).value) {
+          if (userAuthentication(loginRec.responseText) && loginRec.responseText !== "User not found") {
             form.reset();
           } else {
             alert("Invalid email or password");
