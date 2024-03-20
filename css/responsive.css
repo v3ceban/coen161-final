@@ -2,7 +2,7 @@
 @media screen and (max-width: 600px) {
     .row {
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
     }
     
     .column {
@@ -16,7 +16,7 @@
     .row {
         display: flex;
         flex-wrap: wrap;
-        width: 100%;
+        flex-direction: row;
     }
 
     .column {
@@ -34,7 +34,7 @@
     .row {
         display: flex;
         flex-wrap: wrap;
-        width: 100%;
+        flex-direction: row;
     }
 
     .column {
