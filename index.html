@@ -31,7 +31,7 @@
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/main.css" />
-  <link rel="stylesheet" href="css/responsive.css"/>
+  <link rel="stylesheet" href="css/responsive.css">
   <title>When to Meet++</title>
 </head>
 
@@ -70,8 +70,8 @@
         That's all, folks.
       </p>
     </aside>
-    <main id="event" class="row">
-      <section class="column">
+    <main id="event">
+      <section>
         <div>
           <h2 id="event-name">Event name</h2>
           <form method="POST" id="eventNameForm">
@@ -86,7 +86,6 @@
             <div id="calendar"></div>
           </form>
         </div>
-        
         <h3>Choose time</h3>
         <p>
           Add time slots that fit your schedule (or you can add them in the
@@ -94,9 +93,7 @@
         </p>
         <form method="POST" id="timeForm">
           <select name="date" id="dateSelector">
-            <!--Only selected days should appear in the options here-->
           </select>
-          <!--Values in input[type=time] should change with input[type=range] and vice versa-->
           <input type="time" name="start" value="07:00" />
           <input type="time" name="end" value="17:00" />
           <div class="wrap" role="group">
@@ -108,31 +105,28 @@
           <button type="submit">Add</button>
         </form>
       </section>
-      <section class="column">
-        <div class="row">
+      <section>
+        <div>
           <h2 id="event-name-2">Event name</h2>
           <h3>Preview</h3>
           <p>Select a time slot in the calendar to change or delete it</p>
           <div id="main-container"></div>
         </div>
-        <div class="row2">
-          <form method="POST" id="shareForm">
-            <div class="column2">
-              <label>
-                Looking good?
-                <button id="saveEvent">Save event</button>
-              </label>
-            </div>
-            <div class="column2">
-              <label>
-                Invite people
-                <input type="email" name="invitation" placeholder="email@example.com" />
-              </label>
-              <button type="submit">Send</button>
-            </div>
-          </form>
-        </div>
-        
+        <form method="POST" id="shareForm">
+          <div>
+            <label>
+              Looking good?
+              <button id="saveEvent">Save event</button>
+            </label>
+          </div>
+          <div>
+            <label>
+              Invite people
+              <input type="email" name="invitation" placeholder="email@example.com" />
+            </label>
+            <button type="submit">Send</button>
+          </div>
+        </form>
       </section>
     </main>
     <aside id="profile">

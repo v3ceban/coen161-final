@@ -1,71 +1,60 @@
-/* Mobile phones and devices*/
-@media screen and (max-width: 600px) {
-    .row {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    
-    .column {
-        flex: 100%;
-        padding: 20px;
-    }
+@media screen and (min-width: 768px) {
+  header {
+    max-width: initial;
+  }
+
+  main.currentState {
+    max-width: initial;
+    display: grid;
+    grid-template-columns: 310px auto;
+    gap: 40px;
+  }
+
+  main.currentState section:first-of-type {
+    max-width: 310px;
+  }
+
+  main.currentState section:last-of-type>div>p {
+    display: none;
+  }
+
+  main.currentState section:last-of-type>div>h3 {
+    display: none;
+  }
+
+  h2.fc-toolbar-title {
+    font-size: 20px !important;
+    text-transform: capitalize !important;
+  }
+
+  #main-container .calendarContainer {
+    max-width: 310px;
+    min-height: 400px;
+  }
+
+  #event-name {
+    visibility: hidden;
+  }
+
+  #event-name-2 {
+    transform: translateX(-350px);
+  }
+
+  #profile.currentState {
+    margin-left: 0;
+  }
 }
 
-/* iPads and tablets*/
-@media screen and (min-width: 600px) and (max-width: 990px){
-    .row {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-
-    .row2{
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-    }
-
-    .column {
-        flex: 50%;
-        padding: 50px;
-    }
-
-    .column2 {
-        flex: 50%;
-        padding: 10px;
-    }
-
-    header, main, aside {
-        max-width: 100%;
-    }
+@media screen and (min-width: 1100px) {
+  #main-container {
+    display: grid;
+    grid-template-columns: 310px 310px;
+    gap: 20px;
+  }
 }
 
-/* Laptops and desktops */
-@media screen and (min-width: 991px){
-    .row {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-
-    .row2{
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-    }
-
-    .column {
-        flex: 33%;
-        padding: 50px;
-    }
-
-    .column2 {
-        flex: 50%;
-        padding: 10px;
-    }
-
-    header, main, aside {
-        max-width: 100%;
-    }
+@media screen and (min-width: 1450px) {
+  #main-container {
+    grid-template-columns: 310px 310px 310px;
+  }
 }
-

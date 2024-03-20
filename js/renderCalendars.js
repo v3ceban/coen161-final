@@ -6,6 +6,14 @@ async function renderCalendars(dates, events) {
     }
   });
 
+  const shareForm = document.getElementById("shareForm");
+  if (dates.length === 0) {
+    shareForm.style.display = "none";
+    return;
+  } else {
+    shareForm.style.display = "block";
+  }
+
   dates = dates.sort();
   const mainContainer = document.getElementById("main-container");
 
