@@ -25,8 +25,7 @@ async function userAuthentication(userID) {
     prepareCalendars();
     // eslint-disable-next-line no-undef
     renderCalendars([], []);
-    document.querySelectorAll("#event>section")[0].style.display =
-      "block";
+    document.querySelectorAll("#event>section")[0].style.display = "block";
     document.getElementById("event-name-2").textContent =
       document.getElementById("event-name").textContent;
     // eslint-disable-next-line no-undef
@@ -67,19 +66,26 @@ async function loginForm() {
       "Content-Type",
       "application/x-www-form-urlencoded",
     );
-    loginRec.send("email=" + data.email + "&password=" + hashPassword(data.password));
+    loginRec.send(
+      "email=" + data.email + "&password=" + hashPassword(data.password),
+    );
     loginRec.onreadystatechange = function() {
-      if (loginRec.readyState === XMLHttpRequest.DONE) {
-        if (loginRec.status === 200) {
-          if (userAuthentication(loginRec.responseText) && loginRec.responseText !== "User not found") {
-            form.reset();
+      (async () => {
+        if (loginRec.readyState === XMLHttpRequest.DONE) {
+          if (loginRec.status === 200) {
+            if (
+              (await userAuthentication(loginRec.responseText)) === true &&
+              loginRec.responseText !== "User not found"
+            ) {
+              form.reset();
+            } else {
+              alert("Invalid email or password");
+            }
           } else {
-            alert("Invalid email or password");
+            console.error("Error: " + loginRec.status);
           }
-        } else {
-          console.error("Error: " + loginRec.status);
         }
-      }
+      })();
     };
     return;
   });
